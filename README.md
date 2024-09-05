@@ -1,46 +1,43 @@
-# Getting Started with Create React App
+# cloudSpark-web
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Plataforma Web Frontend
 
-## Available Scripts
+Este serviço é responsável por estruturar a plataforma web, utilizando React com TypeScript.
 
-In the project directory, you can run:
+## Como Rodar
 
-### `npm start`
+**Primeiramente, certifique-se de ter o Node.js e o npm instalados no seu ambiente de desenvolvimento.**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Se ainda não tiver, acesse [Node.js](https://nodejs.org/pt) e faça o download da versão mais recente.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Siga os passos abaixo para rodar o frontend localmente:
 
-### `npm test`
+1. **Clone o repositório:**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   Clone o projeto utilizando o comando:
 
-### `npm run build`
+   ```bash
+   git clone https://github.com/CloudSparkTeam/cloudSpark-web.git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Navegue até a pasta do projeto:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    Vá até o diretório onde o repositório foi clonado:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    ```cmd
+    cd cloudSpark-web
 
-### `npm run eject`
+3. **Instale as dependências:**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    Execute o seguinte comando para instalar todas as dependências necessárias:
+    ```cmd
+    npm install
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Inicie o servidor de desenvolvimento:**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    Inicie o servidor de desenvolvimento com o comando:
+    ```cmd
+    npm start
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+O servidor será iniciado na porta 3000. Você poderá acessar a aplicação no seu navegador em:
+```cmd
+http://localhost:3000

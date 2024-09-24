@@ -1,0 +1,85 @@
+.HomeContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  gap: 7vh;
+}
+
+.CarroselContainer{
+  padding-top: 8vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.Carrosel {
+  width: 80vw;
+  height: 40vh;
+  background-color: #dcdcdc;
+  border-radius: 1.5vw;
+}
+
+.FeatureContainer{
+  padding-top: 8vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.Feature{
+  display: flex;
+  width: 75vw;
+  height: 35vh;
+  align-items: center;
+  gap:3vw
+}
+
+.FeatureC1{
+  background-color: #dcdcdc;
+  width: 12vw;
+  height: 12vw;
+  margin-left: 4vw;
+}
+
+.FeatureC2{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height:12vw;
+  padding-left: 2%;
+  gap: 2vh;
+}
+
+.FeatureC2Title{
+  text-align: left;
+  font-size: 2vw;
+  font-weight: bold;
+  color: #333;
+}
+
+.FeatureC2Desc{
+  text-align: left;
+  font-size: 100%;
+  color: #333333;
+}
+
+.FeatureC2Button{
+  width: 45%;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  border-radius: 0.6vw;
+  cursor: pointer;
+  color: #dcdcdc;
+}
+
+.FeatureC2Button:hover{
+  background-color: #000;
+  transition: background-color 0.2s ease;
+  font-size: 115%;
+}

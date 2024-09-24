@@ -1,0 +1,104 @@
+.NavbarRow{
+  padding-top: 0.5vh;
+  background-color: #dcdcdc;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10%;
+  height: 8Vh;
+  color: #ffffffe9;
+}
+
+.RowLeft{
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  padding-left: 2vw;
+}
+
+.RowRight{
+  width: 50vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Icon {
+  color: #333;
+  align-items: center;
+  justify-content: center;
+  width:3.3vw;
+  height: 3.3vw;
+  background-color: #333;
+  border-radius: 50%;
+}
+
+.Title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+.Tabs{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+  width: 30%;
+  gap: 15%;
+  color: #333;
+  font-weight: 400;
+}
+
+.Tabs div:hover {
+  background-color: #0002;
+  border-radius: 15%;
+  height: 90%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.Tab{
+  height: 100%;
+  width: 33%;
+  padding-right: 1%;
+  padding-left: 1%;
+}
+
+.Tabs div {
+  height: 98%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 20%;
+}
+
+.InputContainer{
+  display: flex;
+  align-items: center;
+  height: 90%;
+}
+
+.styled-input {
+  width: 100%;                   /* Largura total do contêiner */
+  padding: 7px;                 /* Espaçamento interno */
+  border: 2px solid #bbb9;        /* Borda cinza clara */
+  border-radius: 5px;           /* Bordas arredondadas */
+  font-size: 14px;               /* Tamanho da fonte */
+  transition: border-color 0.3s; /* Transição suave para a mudança de cor */
+}
+
+.styled-input:focus {
+  border-color: #3339;        /* Muda a cor da borda ao focar */
+  outline: none;                /* Remove o contorno padrão */
+}
+
+.styled-input::placeholder {
+  color: #333;                  /* Cor do placeholder */
+  opacity: 1;                   /* Garantir que o placeholder seja totalmente opaco */
+}
+

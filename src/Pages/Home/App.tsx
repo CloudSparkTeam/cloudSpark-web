@@ -3,11 +3,24 @@ import './style.css'; // Importando o CSS global
 import { useState } from 'react';
 
 const App = () => {
+  const [CriteriaC, setCriteriaC] = useState(false)
+  const [CriteriaS, setCriteriaS] = useState(true)
+
+  const ChangeFeature = (botao: string) => {
+    console.log(botao);
+    console.log(CriteriaC);
+    console.log(CriteriaS);
+    if (botao == 'Cloud') {
+      setCriteriaC(!CriteriaC)
+    } else if (botao == 'Shadow') {
+      setCriteriaS(!CriteriaS)
+    }
+  }
 
   return (
     <div className='HomeContainer'>
       <div className='CarroselContainer'>
-        <div className='Carrosel'></div>
+        <div className='Carrosel'>*Inserir carrosel aqui*</div>
       </div>
 
       <div className='FeatureContainer'>
@@ -24,26 +37,55 @@ const App = () => {
       </div>
 
       <div className='FeatureEx'>
-        <div className='FeatureExItem'>
-          <div className='FeatureExItemR1'></div>
-          <div className='FeatureExItemR2'></div>
-          <div className='FeatureExItemR3'></div>
+        <div className='FeatureExContainer'>
+
+          <div className='FeatureItem'>
+            <div className='FeatureExItemR1'></div>
+            <div className='FeatureExItemR2'>Remove Clouds</div>
+            <div className='FeatureExItemR3'>Remove clouds from the image</div>
+          </div>
+
+          <div className='FeatureItem'>
+            <div className='FeatureExItemR1'></div>
+            <div className='FeatureExItemR2'>Remove Clouds</div>
+            <div className='FeatureExItemR3'>Remove clouds from the image</div>
+          </div>
+
+          <div className='FeatureItem'>
+            <div className='FeatureExItemR1'></div>
+            <div className='FeatureExItemR2'>Remove Clouds</div>
+            <div className='FeatureExItemR3'>Remove clouds from the image</div>
+          </div>
+
         </div>
+
 
       </div>
+      <div className='LocationContainer'>
+        <div className='Location'>*Inserir API de mapa aqui*</div>
+      </div>
 
-      <div className='Location'></div>
       <div className='Search-filter'>
         <div className='FilterControl'>
-          <div className='FilterControlTitle'></div>
-          <div className='FilterControlDesc'></div>
-          <div className='FilterControlButtons'></div>
+          <div className='FilterControlTitle'>Search Criteria</div>
+          <div className='FilterControlDesc'>Filters images based on clouds and shadows presence</div>
+          <div className='FilterControlButtonsContainer'>
+            <div className='FilterControlButtonsReset'>Reset</div>
+            <div className='FilterControlButtonsSearch'>Search</div>
+          </div>
         </div>
+
         <div className='FilterSelect'>
-          <div className='FilterSelectItem'>
+          <div className={CriteriaC ? 'FilterSelectItem' : 'FilterSelectedItem'} onClick={() => ChangeFeature('Cloud')}>
             <div className='FilterSelectItemR1'></div>
-            <div className='FilterSelectItemR2'></div>
-            <div className='FilterSelectItemR3'></div>
+            <div className='FilterSelectItemR2'>Clouds</div>
+            <div className='FilterSelectItemR3'>Choose to include clouds or not in search</div>
+          </div>
+
+          <div className={CriteriaS ? 'FilterSelectItem' : 'FilterSelectedItem'} onClick={() => ChangeFeature('Shadow')}>
+            <div className='FilterSelectItemR1'></div>
+            <div className='FilterSelectItemR2'>Shadows</div>
+            <div className='FilterSelectItemR3'>Choose to include cloud's Shadow or not in search</div>
           </div>
 
         </div>

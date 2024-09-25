@@ -7,7 +7,7 @@
 }
 
 .CarroselContainer{
-  padding-top: 8vh;
+  padding-top: 3vh;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -25,7 +25,7 @@
 }
 
 .FeatureContainer{
-  padding-top: 8vh;
+  padding-top: 1vh;
   width: 100%;
   display: flex;
   flex-direction: row;

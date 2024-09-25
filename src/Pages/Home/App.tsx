@@ -1,10 +1,15 @@
 import React from 'react';
 import './style.css'; // Importando o CSS global
 import { useState } from 'react';
+import Carrosel from "../../Componets/Carrosel/Carrosel"
+import foto1 from "../../Images/foto1.png";
+import foto2 from "../../Images/foto2.png";
+import foto3 from "../../Images/foto3.png";
 
 const App = () => {
   const [CriteriaC, setCriteriaC] = useState(false)
   const [CriteriaS, setCriteriaS] = useState(true)
+  const fotos = [{ url: foto1, alt: "f1" }, { url: foto2, alt: "2" }, { url: foto3, alt: "3" }]
 
   const ChangeFeature = (botao: string) => {
     console.log(botao);
@@ -20,7 +25,9 @@ const App = () => {
   return (
     <div className='HomeContainer'>
       <div className='CarroselContainer'>
-        <div className='Carrosel'>*Inserir carrosel aqui*</div>
+        <div className='Carrosel'>
+          <Carrosel images={fotos} />
+        </div>
       </div>
 
       <div className='FeatureContainer'>

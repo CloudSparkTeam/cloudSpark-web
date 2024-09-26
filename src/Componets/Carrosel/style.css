@@ -19,11 +19,15 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  padding: 10rem;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  padding-top: 10vh;
+  padding-bottom: 29vh;
   cursor: pointer;
   transition: background-color 100ms ease-in-out;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+  height: 2%;
 }
 
 .img-slider-btnR:hover,
@@ -40,7 +44,10 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    padding: 10rem;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    padding-top: 10vh;
+    padding-bottom: 29vh;
     cursor: pointer;
     transition: background-color 100ms ease-in-out;
     border-top-left-radius: 20px;

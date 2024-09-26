@@ -1,0 +1,292 @@
+.HomeContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  gap: 7vh;
+}
+
+.CarroselContainer{
+  padding-top: 3vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.Carrosel {
+  width: 80vw;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dcdcdc;
+  border-radius: 1.5vw;
+}
+
+.FeatureContainer{
+  padding-top: 1vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.Feature{
+  display: flex;
+  width: 75vw;
+  height: 35vh;
+  align-items: center;
+  gap:3vw
+}
+
+.FeatureC1{
+  background-color: #dcdcdc;
+  width: 12vw;
+  height: 12vw;
+  margin-left: 4vw;
+}
+
+.FeatureC2{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height:12vw;
+  padding-left: 2%;
+  gap: 2vh;
+}
+
+.FeatureC2Title{
+  text-align: left;
+  font-size: 2vw;
+  font-weight: bold;
+  color: #333;
+}
+
+.FeatureC2Desc{
+  text-align: left;
+  font-size: 100%;
+  color: #333333;
+}
+
+.FeatureC2Button{
+  width: 45%;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #333;
+  background-color: #333;
+  border-radius: 0.6vw;
+  cursor: pointer;
+  color: #dcdcdc;
+  font-size: 155%;
+  font-weight: 600;
+}
+
+.FeatureC2Button:hover{
+  background-color: #333333ec;
+  transition: background-color 0.1s ease-in-out;
+  font-size: 195%;
+  border: 2px solid #dcdcdc81;
+  font-weight: 600;
+}
+
+
+.FeatureExContainer{
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+}
+
+.FeatureItem{
+  width: 18%;
+  height: 100%;  
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #3333333a;
+  border-radius: 4%;
+  gap: 4%;
+}
+
+/* .FeatureItem:hover{
+  background-color: #6289b644;
+  cursor: pointer;
+} */
+.FeatureExItemR1{
+  width: 100%;
+  height: 75%;
+  border-radius: 4%;
+  background-color: #dcdcdc;
+}
+
+.FeatureExItemR2{
+  font-size: 100%;
+}
+
+.FeatureExItemR3{
+  font-size: 110%;
+  font-weight:600;
+}
+
+.LocationContainer{
+  padding-top: 8vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.Location {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80vw;
+  height: 40vh;
+  background-color: #dcdcdc;
+  border-radius: 1.5vw;
+}
+
+.Search-filter{
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.FilterControl{
+  text-align: left;
+  width: 35%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
+}
+
+.FilterControlTitle{
+  padding-left: 10%;
+  font-size: 250%;
+  font-weight: bold;
+}
+
+.FilterControlDesc{
+  padding-left: 9%;
+  font-size: 120%;
+  font-weight: 400;
+  
+}
+
+.FilterControlButtonsContainer{
+  width: 100%;
+  height: 6.5vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+}
+
+.FilterControlButtonsSearch{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  height: 90%;
+  border-radius: 0.5vw;
+  border: 2px solid #000;
+  background-color: #eee;
+  color: #333;
+  font-size: 150%;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.FilterControlButtonsSearch:hover{
+  background-color: #00000025;
+  font-size: 190%;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.FilterControlButtonsReset{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  height: 90%;
+  border-radius: 0.5vw;
+  border: 2px solid #333;
+  background-color: #333;
+  color: #dcdcdc;
+  font-size: 150%;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.FilterControlButtonsReset:hover{
+  background-color: #333333ec;
+  font-size: 190%;
+  border: 2px solid #000;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.FilterSelect{
+  padding-top: 0.5%;
+  width: 35%;
+  height: 70%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.FilterSelectItem{
+  width: 40%;
+  height: 98%;
+  display: flex;
+  flex-direction: column;
+  gap: 1%;
+  align-items: center;
+  justify-content: space-around;
+  border: 2px dashed #0000001c;
+  border-radius: 1vw;
+  cursor: pointer;
+}
+
+.FilterSelectedItem{
+  width: 40%;
+  height: 98%;
+  display: flex;
+  flex-direction: column;
+  gap: 1%;
+  align-items: center;
+  justify-content: space-around;
+  border: 2px solid #1bb7e6;
+  border-radius: 1vw;
+  cursor: pointer;
+
+}
+
+.FilterSelectItem:hover{
+  background-color: #0000000f;
+}
+
+.FilterSelectedItem:hover{
+  background-color: #0000000f;
+}
+
+.FilterSelectItemR1{
+  width: 7vw;
+  height: 7vw;
+  background-color: #0400ff1c;
+  border-radius: 150vw;
+}
+
+.FilterSelectItemR2{
+  font-size: 150%;
+  font-weight: 500;
+}
+
+.FilterSelectItemR3{
+  font-size: 120%;
+}

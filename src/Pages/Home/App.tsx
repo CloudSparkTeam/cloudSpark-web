@@ -5,6 +5,7 @@ import Carrosel from "../../Componets/Carrosel/Carrosel"
 import foto1 from "../../Images/foto1.png";
 import foto2 from "../../Images/foto2.png";
 import foto3 from "../../Images/foto3.png";
+import ImagemTratada from '../../Componets/ImagemTratada/ImagemTratada';
 
 const App = () => {
   const [CriteriaC, setCriteriaC] = useState(false)
@@ -93,12 +94,13 @@ const App = () => {
             <div className='FilterSelectItemR1'></div>
             <div className='FilterSelectItemR2'>Shadows</div>
             <div className='FilterSelectItemR3'>Choose to include cloud's Shadow or not in search</div>
-          </div>
 
+          </div>
+          
         </div>
 
       </div>
-
+      <ImagemTratada />
     </div>
   );
 };

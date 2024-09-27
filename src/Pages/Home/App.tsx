@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './style.css'; // CSS global
-import Carrosel from "../../Componets/Carrosel/Carrosel"
+import Carrosel from "../../Componets/Carrosel/Carrosel";
 import foto1 from "../../Images/foto1.png";
 import foto2 from "../../Images/foto2.png";
 import foto3 from "../../Images/foto3.png";
 import MapSelector from '../../Componets/MapSelector/MapSelector';
 
 const App = () => {
-  const [CriteriaC, setCriteriaC] = useState(false)
-  const [CriteriaS, setCriteriaS] = useState(true)
+  const [CriteriaC, setCriteriaC] = useState(false);
+  const [CriteriaS, setCriteriaS] = useState(true);
   const fotos = [{ url: foto1, alt: "f1" }, { url: foto2, alt: "2" }, { url: foto3, alt: "3" }];
   const [isMapExpanded, setIsMapExpanded] = useState(false);
   const [polygonCoords, setPolygonCoords] = useState<{ latitude: number; longitude: number }[]>([]);
@@ -21,22 +21,21 @@ const App = () => {
 
   const ChangeFeature = (botao: string) => {
     if (botao === 'Cloud') {
-      setCriteriaC(!CriteriaC)
+      setCriteriaC(!CriteriaC);
     } else if (botao === 'Shadow') {
-      setCriteriaS(!CriteriaS)
+      setCriteriaS(!CriteriaS);
     }
-  }
+  };
 
   // Função para enviar os dados para o backend
   const sendPolygonToBack = async (coords: { longitude: number; latitude: number }[]) => {
     try {
-      const response = await axios.post('url', {        // url backend
+      const response = await axios.post('url', { // url backend
         coordinates: coords,
         startDate,
         endDate,
         cloudPercentage,
         shadowPercentage,
-
       });
       console.log('Resposta do backend:', response.data);
     } catch (error) {
@@ -50,7 +49,7 @@ const App = () => {
 
   const toggleMapSize = () => {
     setIsMapExpanded(!isMapExpanded);
-  }
+  };
 
   const handleSearch = () => {
     if (polygonCoords.length) {
@@ -83,33 +82,31 @@ const App = () => {
 
       <div className='FeatureEx'>
         <div className='FeatureExContainer'>
-
           <div className='FeatureItem'>
             <div className='FeatureExItemR1'></div>
             <div className='FeatureExItemR2'>Remove Clouds</div>
             <div className='FeatureExItemR3'>Remove clouds from the image</div>
           </div>
-
           <div className='FeatureItem'>
             <div className='FeatureExItemR1'></div>
             <div className='FeatureExItemR2'>Remove Clouds</div>
             <div className='FeatureExItemR3'>Remove clouds from the image</div>
           </div>
-
           <div className='FeatureItem'>
             <div className='FeatureExItemR1'></div>
             <div className='FeatureExItemR2'>Remove Clouds</div>
             <div className='FeatureExItemR3'>Remove clouds from the image</div>
           </div>
-
         </div>
-
       </div>
+
       <div className='LocationContainer'>
         <div className={`Location ${isMapExpanded ? 'expanded' : ''}`} onClick={toggleMapSize}>
-          < MapSelector setPolygonCoords={handleRegionSelect} />
+          <MapSelector/>
         </div>
-      </div> <br /><br />
+      </div>
+      
+      <br /><br />
 
       <div className='Search-filter'>
         <div className='FilterControl'>
@@ -183,11 +180,8 @@ const App = () => {
             <div className='FilterSelectItemR2'>Shadows</div>
             <div className='FilterSelectItemR3'>Choose to include cloud's Shadow or not in search</div>
           </div>
-
         </div>
-
       </div>
-
     </div>
   );
 };

@@ -1,90 +1,143 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import mapboxgl from 'mapbox-gl';
-import MapboxDraw from '@mapbox/mapbox-gl-draw';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
+import React, { useState, useEffect } from 'react';
+import { GoogleMap, LoadScript, Polygon, Marker } from '@react-google-maps/api';
 
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN!;
-
-interface Coords {
-    latitude: number;
-    longitude: number;
+// Defina a interface para a região do mapa
+interface MapSelectorInterface {
+  latitude: number;
+  longitude: number;
+  latitudeDelta: number;
+  longitudeDelta: number;
 }
 
-interface MapSelectorProps {
-    setPolygonCoords: (coords: Coords[]) => void;
+function MapSelector(): React.JSX.Element {
+  const [regiao, setRegiao] = useState<MapSelectorInterface | null>(null);
+  const [polygonCoords, setPolygonCoords] = useState<google.maps.LatLngLiteral[]>([]);
+  const [norte, setNorte] = useState<number | null>(null);
+  const [sul, setSul] = useState<number | null>(null);
+  const [leste, setLeste] = useState<number | null>(null);
+  const [oeste, setOeste] = useState<number | null>(null);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setRegiao({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        latitudeDelta: 0.1, // Ajuste conforme necessário
+        longitudeDelta: 0.1, // Ajuste conforme necessário
+      });
+    }, 
+    () => { console.log("Erro ao obter localização"); });
+  }, []);
+
+  useEffect(() => {
+    if (polygonCoords.length === 4) {
+      calcularExtremos(polygonCoords);
+    }
+  }, [polygonCoords]);
+
+  const handleMapClick = (e: google.maps.MapMouseEvent) => {
+    const latLng = e.latLng?.toJSON();
+    if (latLng && polygonCoords.length < 4) {
+      setPolygonCoords([...polygonCoords, latLng]);
+
+      if (polygonCoords.length === 3) {
+        console.log('Coordenadas selecionadas:', [...polygonCoords, latLng]);
+      }
+    } else {
+      console.log('Você já selecionou 4 pontos.');
+    }
+  };
+
+  const calcularExtremos = (coords: google.maps.LatLngLiteral[]) => {
+    const latitudes = coords.map(coord => coord.lat);
+    const longitudes = coords.map(coord => coord.lng);
+
+    const norte = Math.max(...latitudes);
+    const sul = Math.min(...latitudes);
+    const leste = Math.max(...longitudes);
+    const oeste = Math.min(...longitudes);
+
+    setNorte(norte);
+    setSul(sul);
+    setLeste(leste);
+    setOeste(oeste);
+
+    console.log(`Norte: ${norte}, Sul: ${sul}, Leste: ${leste}, Oeste: ${oeste}`);
+  };
+
+  const handleMarkerDragEnd = (index: number, e: google.maps.MapMouseEvent) => {
+    const newCoordinate = e.latLng?.toJSON();
+    if (newCoordinate) {
+      const updatedCoords = [...polygonCoords];
+      updatedCoords[index] = newCoordinate;
+      setPolygonCoords(updatedCoords);
+
+      calcularExtremos(updatedCoords);
+      console.log(`Marcador ${index + 1} atualizado para:`, newCoordinate);
+    }
+  };
+
+  return (
+    <LoadScript googleMapsApiKey={process.env.REACT_APP_MAP_TOKEN || ''}>
+      <div style={styles.container}>
+        <GoogleMap
+          mapContainerStyle={{ width: '100%', height: '100%' }}
+          center={regiao ? { lat: regiao.latitude, lng: regiao.longitude } : { lat: 0, lng: 0 }}
+          zoom={regiao ? 10 : 2}
+          onClick={handleMapClick}
+        >
+          {polygonCoords.length > 2 && (
+            <Polygon
+              paths={polygonCoords}
+              options={{
+                strokeColor: "#0000FF",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "rgba(0,0,255,0.3)",
+                fillOpacity: 0.35
+              }}
+            />
+          )}
+
+          {polygonCoords.map((coord, index) => (
+            <Marker
+              key={index}
+              position={coord}
+              draggable
+              onDragEnd={(e) => handleMarkerDragEnd(index, e)}
+            />
+          ))}
+        </GoogleMap>
+
+        {norte && sul && leste && oeste && (
+          <div style={styles.coordContainer}>
+            <p>Norte: {norte.toFixed(6)}</p>
+            <p>Sul: {sul.toFixed(6)}</p>
+            <p>Leste: {leste.toFixed(6)}</p>
+            <p>Oeste: {oeste.toFixed(6)}</p>
+          </div>
+        )}
+      </div>
+    </LoadScript>
+  );
 }
 
-type Viewport = {
-    latitude: number;
-    longitude: number;
-    zoom: number;
-    bearing?: number;
-    pitch?: number;
-}
-
-const MapSelector: React.FC<MapSelectorProps> = ({ setPolygonCoords }) => {
-    const mapContainerRef = useRef<HTMLDivElement>(null);
-    const map = useRef<mapboxgl.Map | null>(null);
-    const draw = useRef<MapboxDraw | null>(null);
-
-    const [viewport, setViewport] = useState<Viewport>({
-        latitude: 37.7577,
-        longitude: -122.4376,
-        zoom: 10,
-    });
-
-    const updatePolygon = useCallback((e: any) => {
-        const polygon = e.features[0]; // A forma desenhada
-        if (polygon && polygon.geometry.type === 'Polygon') {
-            const coords = polygon.geometry.coordinates[0].map((coord: [number, number]) => ({
-                longitude: coord[0],
-                latitude: coord[1],
-            }));
-            setPolygonCoords(coords); // Envia as coordenadas para o componente pai
-        }
-    }, [setPolygonCoords]);
-
-    // Função para inicializar o Mapbox Draw
-    useEffect(() => {
-        if (map.current || !mapContainerRef.current) return; // Inicializa o mapa apenas uma vez
-
-        map.current = new mapboxgl.Map({
-            container: mapContainerRef.current,
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [viewport.longitude, viewport.latitude],
-            zoom: viewport.zoom,
-        });
-
-        draw.current = new MapboxDraw({
-            displayControlsDefault: false,
-            controls: {
-                polygon: true,
-                trash: true,
-            },
-        });
-
-        map.current.addControl(draw.current);
-
-        // Adiciona eventos de criação e atualização de polígono
-        (map.current as any).on('draw.create', updatePolygon);
-        (map.current as any).on('draw.update', updatePolygon);
-
-        // Limpa os eventos e o controle de desenho ao desmontar
-        return () => {
-            if (map.current) {
-                (map.current as any).off('draw.create', updatePolygon);
-                (map.current as any).off('draw.update', updatePolygon);
-                map.current.removeControl(draw.current as MapboxDraw);
-            }
-        };
-    }, [updatePolygon, viewport]);
-
-    return (
-        <div className='map-container'>
-            <div ref={mapContainerRef} style={{ width: '100%', height: '100%' }} />
-        </div>
-    );
+const styles: { [key: string]: React.CSSProperties } = {
+  container: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    position: 'relative'
+  },
+  coordContainer: {
+    position: 'absolute',
+    bottom: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    padding: 10,
+    borderRadius: 10,
+  }
 };
 
 export default MapSelector;

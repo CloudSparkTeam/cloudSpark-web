@@ -1,26 +1,64 @@
-import React from 'react';
-import './style.css'; // Importando o CSS global
-import { useState } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import './style.css'; // CSS global
 import Carrosel from "../../Componets/Carrosel/Carrosel"
 import foto1 from "../../Images/foto1.png";
 import foto2 from "../../Images/foto2.png";
 import foto3 from "../../Images/foto3.png";
+import MapSelector from '../../Componets/MapSelector/MapSelector';
 
 const App = () => {
   const [CriteriaC, setCriteriaC] = useState(false)
   const [CriteriaS, setCriteriaS] = useState(true)
-  const fotos = [{ url: foto1, alt: "f1" }, { url: foto2, alt: "2" }, { url: foto3, alt: "3" }]
+  const fotos = [{ url: foto1, alt: "f1" }, { url: foto2, alt: "2" }, { url: foto3, alt: "3" }];
+  const [isMapExpanded, setIsMapExpanded] = useState(false);
+  const [polygonCoords, setPolygonCoords] = useState<{ latitude: number; longitude: number }[]>([]);
+
+  const [startDate, setStartDate] = useState<string>('');
+  const [endDate, setEndDate] = useState<string>('');
+  const [cloudPercentage, setCloudPercentage] = useState<number>(0);
+  const [shadowPercentage, setShadowPercentage] = useState<number>(0);
 
   const ChangeFeature = (botao: string) => {
-    console.log(botao);
-    console.log(CriteriaC);
-    console.log(CriteriaS);
-    if (botao == 'Cloud') {
+    if (botao === 'Cloud') {
       setCriteriaC(!CriteriaC)
-    } else if (botao == 'Shadow') {
+    } else if (botao === 'Shadow') {
       setCriteriaS(!CriteriaS)
     }
   }
+
+  // Função para enviar os dados para o backend
+  const sendPolygonToBack = async (coords: { longitude: number; latitude: number }[]) => {
+    try {
+      const response = await axios.post('url', {        // url backend
+        coordinates: coords,
+        startDate,
+        endDate,
+        cloudPercentage,
+        shadowPercentage,
+
+      });
+      console.log('Resposta do backend:', response.data);
+    } catch (error) {
+      console.error('Erro ao enviar dados para o backend:', error);
+    }
+  };
+
+  const handleRegionSelect = (coords: { latitude: number, longitude: number }[]) => {
+    setPolygonCoords(coords); // Armazena o polígono selecionado
+  };
+
+  const toggleMapSize = () => {
+    setIsMapExpanded(!isMapExpanded);
+  }
+
+  const handleSearch = () => {
+    if (polygonCoords.length) {
+      sendPolygonToBack(polygonCoords); // Envia para o backend ao clicar no botão "Buscar Imagens"
+    } else {
+      console.error('Nenhum polígono foi desenhado.');
+    }
+  };
 
   return (
     <div className='HomeContainer'>
@@ -66,11 +104,12 @@ const App = () => {
 
         </div>
 
-
       </div>
       <div className='LocationContainer'>
-        <div className='Location'>*Inserir API de mapa aqui*</div>
-      </div>
+        <div className={`Location ${isMapExpanded ? 'expanded' : ''}`} onClick={toggleMapSize}>
+          < MapSelector setPolygonCoords={handleRegionSelect} />
+        </div>
+      </div> <br /><br />
 
       <div className='Search-filter'>
         <div className='FilterControl'>
@@ -78,7 +117,57 @@ const App = () => {
           <div className='FilterControlDesc'>Filters images based on clouds and shadows presence</div>
           <div className='FilterControlButtonsContainer'>
             <div className='FilterControlButtonsReset'>Reset</div>
-            <div className='FilterControlButtonsSearch'>Search</div>
+            <div className='FilterControlButtonsSearch' onClick={handleSearch}>Search</div>
+          </div>
+
+          {/* Data de início */}
+          <div>
+            <label htmlFor="start-date">Start Date:</label>
+            <input
+              type="date"
+              id="start-date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
+          </div>
+
+          {/* Data de fim */}
+          <div>
+            <label htmlFor="end-date">End Date:</label>
+            <input
+              type="date"
+              id="end-date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />
+          </div>
+
+          {/* Controle de porcentagem de nuvens */}
+          <div>
+            <label htmlFor="cloud-percentage">Cloud Percentage:</label>
+            <input
+              type="range"
+              id="cloud-percentage"
+              min="0"
+              max="100"
+              value={cloudPercentage}
+              onChange={(e) => setCloudPercentage(Number(e.target.value))}
+            />
+            <span>{cloudPercentage}%</span>
+          </div>
+
+          {/* Controle de porcentagem de sombras */}
+          <div>
+            <label htmlFor="shadow-percentage">Shadow Percentage:</label>
+            <input
+              type="range"
+              id="shadow-percentage"
+              min="0"
+              max="100"
+              value={shadowPercentage}
+              onChange={(e) => setShadowPercentage(Number(e.target.value))}
+            />
+            <span>{shadowPercentage}%</span>
           </div>
         </div>
 

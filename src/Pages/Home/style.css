@@ -6,7 +6,7 @@
   gap: 7vh;
 }
 
-.CarroselContainer{
+.CarroselContainer {
   padding-top: 3vh;
   width: 100%;
   display: flex;
@@ -24,7 +24,7 @@
   border-radius: 1.5vw;
 }
 
-.FeatureContainer{
+.FeatureContainer {
   padding-top: 1vh;
   width: 100%;
   display: flex;
@@ -32,44 +32,44 @@
   justify-content: center;
 }
 
-.Feature{
+.Feature {
   display: flex;
   width: 75vw;
   height: 35vh;
   align-items: center;
-  gap:3vw
+  gap: 3vw
 }
 
-.FeatureC1{
+.FeatureC1 {
   background-color: #dcdcdc;
   width: 12vw;
   height: 12vw;
   margin-left: 4vw;
 }
 
-.FeatureC2{
+.FeatureC2 {
   display: flex;
   flex-direction: column;
   width: 40%;
-  height:12vw;
+  height: 12vw;
   padding-left: 2%;
   gap: 2vh;
 }
 
-.FeatureC2Title{
+.FeatureC2Title {
   text-align: left;
   font-size: 2vw;
   font-weight: bold;
   color: #333;
 }
 
-.FeatureC2Desc{
+.FeatureC2Desc {
   text-align: left;
   font-size: 100%;
   color: #333333;
 }
 
-.FeatureC2Button{
+.FeatureC2Button {
   width: 45%;
   height: 25%;
   display: flex;
@@ -84,7 +84,7 @@
   font-weight: 600;
 }
 
-.FeatureC2Button:hover{
+.FeatureC2Button:hover {
   background-color: #333333ec;
   transition: background-color 0.1s ease-in-out;
   font-size: 195%;
@@ -93,7 +93,7 @@
 }
 
 
-.FeatureExContainer{
+.FeatureExContainer {
   width: 100%;
   height: 50vh;
   display: flex;
@@ -102,9 +102,9 @@
   flex-direction: row;
 }
 
-.FeatureItem{
+.FeatureItem {
   width: 18%;
-  height: 100%;  
+  height: 100%;
   display: flex;
   flex-direction: column;
   border: 2px solid #3333333a;
@@ -116,23 +116,23 @@
   background-color: #6289b644;
   cursor: pointer;
 } */
-.FeatureExItemR1{
+.FeatureExItemR1 {
   width: 100%;
   height: 75%;
   border-radius: 4%;
   background-color: #dcdcdc;
 }
 
-.FeatureExItemR2{
+.FeatureExItemR2 {
   font-size: 100%;
 }
 
-.FeatureExItemR3{
+.FeatureExItemR3 {
   font-size: 110%;
-  font-weight:600;
+  font-weight: 600;
 }
 
-.LocationContainer{
+.LocationContainer {
   padding-top: 8vh;
   width: 100%;
   display: flex;
@@ -148,9 +148,15 @@
   height: 40vh;
   background-color: #dcdcdc;
   border-radius: 1.5vw;
+  overflow: hidden;
 }
 
-.Search-filter{
+.Location.expanded {
+  height: 80vh;
+  width: 100vw;
+}
+
+.Search-filter {
   width: 100%;
   height: 50vh;
   display: flex;
@@ -158,7 +164,7 @@
   justify-content: space-evenly;
 }
 
-.FilterControl{
+.FilterControl {
   text-align: left;
   width: 35%;
   height: 70%;
@@ -167,20 +173,20 @@
   gap: 5%;
 }
 
-.FilterControlTitle{
+.FilterControlTitle {
   padding-left: 10%;
   font-size: 250%;
   font-weight: bold;
 }
 
-.FilterControlDesc{
+.FilterControlDesc {
   padding-left: 9%;
   font-size: 120%;
   font-weight: 400;
-  
+
 }
 
-.FilterControlButtonsContainer{
+.FilterControlButtonsContainer {
   width: 100%;
   height: 6.5vh;
   display: flex;
@@ -189,7 +195,7 @@
   flex-direction: row;
 }
 
-.FilterControlButtonsSearch{
+.FilterControlButtonsSearch {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -204,13 +210,13 @@
   cursor: pointer;
 }
 
-.FilterControlButtonsSearch:hover{
+.FilterControlButtonsSearch:hover {
   background-color: #00000025;
   font-size: 190%;
   transition: background-color 0.1s ease-in-out;
 }
 
-.FilterControlButtonsReset{
+.FilterControlButtonsReset {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -225,14 +231,14 @@
   cursor: pointer;
 }
 
-.FilterControlButtonsReset:hover{
+.FilterControlButtonsReset:hover {
   background-color: #333333ec;
   font-size: 190%;
   border: 2px solid #000;
   transition: background-color 0.1s ease-in-out;
 }
 
-.FilterSelect{
+.FilterSelect {
   padding-top: 0.5%;
   width: 35%;
   height: 70%;
@@ -240,7 +246,7 @@
   justify-content: space-around;
 }
 
-.FilterSelectItem{
+.FilterSelectItem {
   width: 40%;
   height: 98%;
   display: flex;
@@ -253,7 +259,7 @@
   cursor: pointer;
 }
 
-.FilterSelectedItem{
+.FilterSelectedItem {
   width: 40%;
   height: 98%;
   display: flex;
@@ -267,26 +273,46 @@
 
 }
 
-.FilterSelectItem:hover{
+.FilterSelectItem:hover {
   background-color: #0000000f;
 }
 
-.FilterSelectedItem:hover{
+.FilterSelectedItem:hover {
   background-color: #0000000f;
 }
 
-.FilterSelectItemR1{
+.FilterSelectItemR1 {
   width: 7vw;
   height: 7vw;
   background-color: #0400ff1c;
   border-radius: 150vw;
 }
 
-.FilterSelectItemR2{
+.FilterSelectItemR2 {
   font-size: 150%;
   font-weight: 500;
 }
 
-.FilterSelectItemR3{
+.FilterSelectItemR3 {
   font-size: 120%;
+}
+
+/* Home/style.css */
+input[type="date"] {
+  padding: 5px;
+  margin-top: 10px;
+  width: 100%;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin-top: 10px;
+}
+
+span {
+  font-size: 14px;
+  margin-left: 10px;
 }

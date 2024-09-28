@@ -21,7 +21,10 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
     const [leste, setLeste] = useState<number | null>(null);
     const [oeste, setOeste] = useState<number | null>(null);
 
-    const [mapCenter, setMapCenter] = useState<google.maps.LatLngLiteral | null>(null);
+    // Defina a posição padrão para o centro do mapa
+    const defaultCenter = { lat: -23.5505, lng: -46.6333 }; // São Paulo, por exemplo
+
+    const [mapCenter, setMapCenter] = useState<google.maps.LatLngLiteral>(defaultCenter);
     const [isPolygonVisible, setIsPolygonVisible] = useState(false);
 
     useEffect(() => {

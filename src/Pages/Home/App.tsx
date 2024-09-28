@@ -6,18 +6,18 @@ import foto1 from "../../Images/foto1.png";
 import foto2 from "../../Images/foto2.png";
 import foto3 from "../../Images/foto3.png";
 import MapSelector from '../../Componets/MapSelector/MapSelector';
+import { response } from 'express';
 
 const App = () => {
   const [CriteriaC, setCriteriaC] = useState(false);
   const [CriteriaS, setCriteriaS] = useState(true);
   const fotos = [{ url: foto1, alt: "f1" }, { url: foto2, alt: "2" }, { url: foto3, alt: "3" }];
-  const [isMapExpanded, setIsMapExpanded] = useState(false);
-  const [polygonCoords, setPolygonCoords] = useState<{ latitude: number; longitude: number }[]>([]);
 
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
   const [cloudPercentage, setCloudPercentage] = useState<number>(0);
   const [shadowPercentage, setShadowPercentage] = useState<number>(0);
+  const [polygonCoords, setPolygonCoords] = useState<google.maps.LatLngLiteral[]>([]);
 
   const ChangeFeature = (botao: string) => {
     if (botao === 'Cloud') {
@@ -28,35 +28,37 @@ const App = () => {
   };
 
   // Função para enviar os dados para o backend
-  const sendPolygonToBack = async (coords: { longitude: number; latitude: number }[]) => {
+  const handleSearch = async () => {
+    // Valida se as datas foram inseridas
+    if (!startDate || !endDate) {
+      alert('Por favor, insira as datas de início e fim.');
+      return;
+    }
+
+    // // Valida se o polígono foi desenhado
+    // if (polygonCoords.length !== 4) {
+    //   alert('Por favor, selecione uma região no mapa desenhando um polígono com 4 pontos.');
+    //   return;
+    // }
+
     try {
-      const response = await axios.post('url', { // url backend
-        coordinates: coords,
+      const response = await axios.post('url_do_back', { // Coloque a URL correta aqui
+        coordinates: polygonCoords,
         startDate,
         endDate,
         cloudPercentage,
         shadowPercentage,
       });
+
       console.log('Resposta do backend:', response.data);
     } catch (error) {
       console.error('Erro ao enviar dados para o backend:', error);
     }
   };
 
-  const handleRegionSelect = (coords: { latitude: number, longitude: number }[]) => {
-    setPolygonCoords(coords); // Armazena o polígono selecionado
-  };
-
-  const toggleMapSize = () => {
-    setIsMapExpanded(!isMapExpanded);
-  };
-
-  const handleSearch = () => {
-    if (polygonCoords.length) {
-      sendPolygonToBack(polygonCoords); // Envia para o backend ao clicar no botão "Buscar Imagens"
-    } else {
-      console.error('Nenhum polígono foi desenhado.');
-    }
+  // Função que será passada para o MapSelector e que define as coordenadas do polígono
+  const handleRegionSelect = (coords: google.maps.LatLngLiteral[]) => {
+    setPolygonCoords(coords);
   };
 
   return (
@@ -101,11 +103,11 @@ const App = () => {
       </div>
 
       <div className='LocationContainer'>
-        <div className={`Location ${isMapExpanded ? 'expanded' : ''}`} onClick={toggleMapSize}>
-          <MapSelector/>
+        <div className={'Location'}>
+          <MapSelector sendPolygonToBack={handleRegionSelect} />
         </div>
       </div>
-      
+
       <br /><br />
 
       <div className='Search-filter'>

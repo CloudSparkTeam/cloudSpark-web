@@ -22,6 +22,7 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
     const [oeste, setOeste] = useState<number | null>(null);
 
     const [mapCenter, setMapCenter] = useState<google.maps.LatLngLiteral | null>(null);
+    const [isPolygonVisible, setIsPolygonVisible] = useState(false);
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -41,6 +42,7 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
     useEffect(() => {
         if (polygonCoords.length === 4) {
             calcularExtremos(polygonCoords);
+            setIsPolygonVisible(true);
         }
     }, [polygonCoords]);
 
@@ -97,10 +99,10 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
                             paths={polygonCoords}
                             options={{
                                 strokeColor: "#0000FF",
-                                strokeOpacity: 0.8,
+                                strokeOpacity: isPolygonVisible ? 0.8 : 0,
                                 strokeWeight: 2,
                                 fillColor: "rgba(0,0,255,0.3)",
-                                fillOpacity: 0.35,
+                                fillOpacity: isPolygonVisible ? 0.35 : 0,
 
                             }
 

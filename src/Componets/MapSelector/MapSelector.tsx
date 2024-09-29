@@ -10,7 +10,7 @@ interface MapSelectorInterface {
 }
 
 interface MapSelectorProps {
-    sendPolygonToBack: (coords: google.maps.LatLngLiteral[]) => void;
+    sendPolygonToBack: (coords: { norte: number; sul: number; leste: number; oeste: number }) => void;
 }
 
 function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element {
@@ -37,7 +37,7 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
             };
 
             setRegiao(center);
-            setMapCenter({ lat: center.latitude, lng: center.longitude })
+            setMapCenter({ lat: center.latitude, lng: center.longitude });
         },
             () => { console.log("Erro ao obter localização"); });
     }, []);
@@ -49,6 +49,12 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
         }
     }, [polygonCoords]);
 
+    useEffect(() => {
+        if (norte !== null && sul !== null && leste !== null && oeste !== null) {
+            sendPolygonToBack({ norte, sul, leste, oeste });
+        }
+    }, [norte, sul, leste, oeste]);
+
     const handleMapClick = (e: google.maps.MapMouseEvent) => {
         const latLng = e.latLng?.toJSON();
         if (latLng && polygonCoords.length < 4) {
@@ -56,6 +62,22 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
         } else if (polygonCoords.length === 4) {
             console.log('Você já selecionou 4 pontos.');
         }
+    };
+
+    const handlePolygonClick = (event: google.maps.MapMouseEvent) => {
+        const latLng = event.latLng?.toJSON();
+        if (latLng) {
+            const newCoords = [...polygonCoords, latLng];
+            setPolygonCoords(newCoords);
+        }
+    };
+
+    const togglePolygonVisibility = () => {
+        setIsPolygonVisible((prev) => !prev);
+    };
+
+    const handleClearPolygon = () => {
+        setPolygonCoords([]);
     };
 
     const calcularExtremos = (coords: google.maps.LatLngLiteral[]) => {
@@ -84,7 +106,6 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
 
             calcularExtremos(updatedCoords);
             console.log(`Marcador ${index + 1} atualizado para:`, newCoordinate);
-
         }
     };
 
@@ -95,22 +116,18 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
                     mapContainerStyle={{ width: '100%', height: '100%' }}
                     center={mapCenter ?? undefined}
                     zoom={regiao ? 10 : 2}
-                    onClick={handleMapClick}
+                    onClick={handlePolygonClick}
                 >
-                    {polygonCoords.length >= 4 && (
-                        <Polygon
-                            paths={polygonCoords}
-                            options={{
-                                strokeColor: "#0000FF",
-                                strokeOpacity: isPolygonVisible ? 0.8 : 0,
-                                strokeWeight: 2,
-                                fillColor: "rgba(0,0,255,0.3)",
-                                fillOpacity: isPolygonVisible ? 0.35 : 0,
-
-                            }
-
-                            }
-                        />
+                    {isPolygonVisible && (
+                        <>
+                            <Polygon
+                                paths={polygonCoords}
+                                options={{ fillColor: "blue", fillOpacity: 0.4, strokeColor: "blue", strokeOpacity: 1 }}
+                            />
+                            {polygonCoords.map((coord, index) => (
+                                <Marker key={index} position={coord} />
+                            ))}
+                        </>
                     )}
 
                     {polygonCoords.map((coord, index) => (
@@ -131,6 +148,13 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
                         <p>Oeste: {oeste.toFixed(6)}</p>
                     </div>
                 )}
+            </div>
+
+            <div className='MapSelectorControls'>
+                <button onClick={togglePolygonVisibility}>
+                    {isPolygonVisible ? "Hide Polygon" : "Mostrar Polígono"}
+                </button>
+                <button onClick={handleClearPolygon}>Limpar Polígono</button>
             </div>
         </LoadScript>
     );

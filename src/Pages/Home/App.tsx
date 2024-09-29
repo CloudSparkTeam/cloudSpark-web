@@ -7,7 +7,6 @@ import foto2 from "../../Images/foto2.png";
 import foto3 from "../../Images/foto3.png";
 import ImagemTratada from '../../Componets/ImagemTratada/ImagemTratada';
 import MapSelector from '../../Componets/MapSelector/MapSelector';
-import { response } from 'express';
 
 const App = () => {
   const [CriteriaC, setCriteriaC] = useState(false);
@@ -28,7 +27,6 @@ const App = () => {
     }
   };
 
-  // Função para enviar os dados para o backend
   const handleSearch = async () => {
     // Valida se as datas foram inseridas
     if (!startDate || !endDate) {
@@ -36,30 +34,48 @@ const App = () => {
       return;
     }
 
-    // // Valida se o polígono foi desenhado
-    // if (polygonCoords.length !== 4) {
-    //   alert('Por favor, selecione uma região no mapa desenhando um polígono com 4 pontos.');
-    //   return;
-    // }
+    // Valida se o polígono foi desenhado
+    if (polygonCoords.length !== 4) {
+      alert('Por favor, selecione uma região no mapa desenhando um polígono com 4 pontos.');
+      return;
+    }
+
+    // Extrair coordenadas
+    const coordenada_norte = polygonCoords[0].lat;
+    const coordenada_sul = polygonCoords[1].lat;
+    const coordenada_leste = polygonCoords[2].lng;
+    const coordenada_oeste = polygonCoords[3].lng;
 
     try {
-      const response = await axios.post('url_do_back', { // Coloque a URL correta aqui
-        coordinates: polygonCoords,
-        startDate,
-        endDate,
+      const response = await axios.post('http://localhost:3002/imagemSatelite/criar', {
+        coordenada_norte,
+        coordenada_sul,
+        coordenada_leste,
+        coordenada_oeste,
+        data_imagem: new Date().toISOString(), // Formato ISO 8601
+        status: "ativo", // Ajuste conforme necessário
+        startDate: new Date(startDate).toISOString(), // Formato ISO 8601
+        endDate: new Date(endDate).toISOString(), // Formato ISO 8601
         cloudPercentage,
         shadowPercentage,
+        // usuario_id: 1, // Descomente e altere conforme necessário
       });
-
       console.log('Resposta do backend:', response.data);
     } catch (error) {
       console.error('Erro ao enviar dados para o backend:', error);
     }
   };
-
+  
   // Função que será passada para o MapSelector e que define as coordenadas do polígono
-  const handleRegionSelect = (coords: google.maps.LatLngLiteral[]) => {
-    setPolygonCoords(coords);
+  const handleRegionSelect = (coords: { norte: number; sul: number; leste: number; oeste: number }) => {
+    // Converta as coordenadas do polígono para um array para o uso interno
+    const coordsArray: google.maps.LatLngLiteral[] = [
+      { lat: coords.norte, lng: coords.leste }, // Canto superior direito
+      { lat: coords.sul, lng: coords.leste },   // Canto inferior direito
+      { lat: coords.sul, lng: coords.oeste },   // Canto inferior esquerdo
+      { lat: coords.norte, lng: coords.oeste },  // Canto superior esquerdo
+    ];
+    setPolygonCoords(coordsArray);
   };
 
   return (
@@ -69,7 +85,7 @@ const App = () => {
           <Carrosel images={fotos} />
         </div>
       </div>
-
+{/*
       <div className='FeatureContainer'>
         <div className='Feature'>
           <div className='FeatureC1'></div>
@@ -82,6 +98,7 @@ const App = () => {
           </div>
         </div>
       </div>
+
 
       <div className='FeatureEx'>
         <div className='FeatureExContainer'>
@@ -102,6 +119,7 @@ const App = () => {
           </div>
         </div>
       </div>
+*/}
 
       <div className='LocationContainer'>
         <div className={'Location'}>
@@ -113,16 +131,16 @@ const App = () => {
 
       <div className='Search-filter'>
         <div className='FilterControl'>
-          <div className='FilterControlTitle'>Search Criteria</div>
-          <div className='FilterControlDesc'>Filters images based on clouds and shadows presence</div>
+          <div className='FilterControlTitle'>Filtrar Pesquisa</div>
+          <div className='FilterControlDesc'>Filtra imagens com base na presença de nuvens e sombras</div>
           <div className='FilterControlButtonsContainer'>
-            <div className='FilterControlButtonsReset'>Reset</div>
-            <div className='FilterControlButtonsSearch' onClick={handleSearch}>Search</div>
+            <div className='FilterControlButtonsReset'>Limpar</div>
+            <div className='FilterControlButtonsSearch' onClick={handleSearch}>Pesquisar</div>
           </div>
 
           {/* Data de início */}
           <div>
-            <label htmlFor="start-date">Start Date:</label>
+            <label htmlFor="start-date">Data de Inicio:</label>
             <input
               type="date"
               id="start-date"
@@ -133,7 +151,7 @@ const App = () => {
 
           {/* Data de fim */}
           <div>
-            <label htmlFor="end-date">End Date:</label>
+            <label htmlFor="end-date">Data Final:</label>
             <input
               type="date"
               id="end-date"
@@ -144,7 +162,7 @@ const App = () => {
 
           {/* Controle de porcentagem de nuvens */}
           <div>
-            <label htmlFor="cloud-percentage">Cloud Percentage:</label>
+            <label htmlFor="cloud-percentage">Porcentagem de Nuvens:</label>
             <input
               type="range"
               id="cloud-percentage"
@@ -158,7 +176,7 @@ const App = () => {
 
           {/* Controle de porcentagem de sombras */}
           <div>
-            <label htmlFor="shadow-percentage">Shadow Percentage:</label>
+            <label htmlFor="shadow-percentage">Porcentagem de Sombras:</label>
             <input
               type="range"
               id="shadow-percentage"
@@ -174,14 +192,14 @@ const App = () => {
         <div className='FilterSelect'>
           <div className={CriteriaC ? 'FilterSelectItem' : 'FilterSelectedItem'} onClick={() => ChangeFeature('Cloud')}>
             <div className='FilterSelectItemR1'></div>
-            <div className='FilterSelectItemR2'>Clouds</div>
-            <div className='FilterSelectItemR3'>Choose to include clouds or not in search</div>
+            <div className='FilterSelectItemR2'>Nuvens</div>
+            <div className='FilterSelectItemR3'>Escolha se deseja incluir nuvens ou não na sua pesquisa:</div>
           </div>
 
           <div className={CriteriaS ? 'FilterSelectItem' : 'FilterSelectedItem'} onClick={() => ChangeFeature('Shadow')}>
             <div className='FilterSelectItemR1'></div>
-            <div className='FilterSelectItemR2'>Shadows</div>
-            <div className='FilterSelectItemR3'>Choose to include cloud's Shadow or not in search</div>
+            <div className='FilterSelectItemR2'>Sombras</div>
+            <div className='FilterSelectItemR3'>Escolha se deseja incluir sombras ou não na sua pesquisa:</div>
           </div>
 
         </div>

@@ -152,9 +152,9 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
 
             <div className='MapSelectorControls'>
                 <button onClick={togglePolygonVisibility}>
-                    {isPolygonVisible ? "Hide Polygon" : "Show Polygon"}
+                    {isPolygonVisible ? "Hide Polygon" : "Mostrar Polígono"}
                 </button>
-                <button onClick={handleClearPolygon}>Clear Polygon</button>
+                <button onClick={handleClearPolygon}>Limpar Polígono</button>
             </div>
         </LoadScript>
     );

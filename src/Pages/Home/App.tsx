@@ -85,7 +85,7 @@ const App = () => {
           <Carrosel images={fotos} />
         </div>
       </div>
-
+{/*
       <div className='FeatureContainer'>
         <div className='Feature'>
           <div className='FeatureC1'></div>
@@ -98,6 +98,7 @@ const App = () => {
           </div>
         </div>
       </div>
+
 
       <div className='FeatureEx'>
         <div className='FeatureExContainer'>
@@ -118,6 +119,7 @@ const App = () => {
           </div>
         </div>
       </div>
+*/}
 
       <div className='LocationContainer'>
         <div className={'Location'}>
@@ -129,11 +131,11 @@ const App = () => {
 
       <div className='Search-filter'>
         <div className='FilterControl'>
-          <div className='FilterControlTitle'>Search Criteria</div>
-          <div className='FilterControlDesc'>Filters images based on clouds and shadows presence</div>
+          <div className='FilterControlTitle'>Filtrar Pesquisa</div>
+          <div className='FilterControlDesc'>Filtra imagens com base na presença de nuvens e sombras</div>
           <div className='FilterControlButtonsContainer'>
-            <div className='FilterControlButtonsReset'>Reset</div>
-            <div className='FilterControlButtonsSearch' onClick={handleSearch}>Search</div>
+            <div className='FilterControlButtonsReset'>Limpar</div>
+            <div className='FilterControlButtonsSearch' onClick={handleSearch}>Pesquisar</div>
           </div>
 
           {/* Data de início */}

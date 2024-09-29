@@ -3,6 +3,9 @@ import Navbar from "./Componets/Navbar/App"
 import Home from './Pages/Home/App';
 import './App.css'
 
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
 const App = () => {
   return (
     <div className='App'>

@@ -1,4 +1,4 @@
-# cloudSpark-frontend
+# cloudSpark-web
 # Plataforma Web
 
 Este serviço é responsável por estruturar a interface web da plataforma.
@@ -8,8 +8,6 @@ Este serviço é responsável por estruturar a interface web da plataforma.
 Certifique-se de ter o **Node.js** e o **npm** instalados no seu ambiente de desenvolvimento.
 
 - Se ainda não tiver, acesse [Node.js](https://nodejs.org/pt) e faça o download da versão mais recente.
-
-## Como Rodar
 
 Siga os passos abaixo para rodar o frontend localmente:
 
@@ -48,4 +46,3 @@ O servidor será iniciado localmente na porta 3000. Acesse o aplicativo web atra
 
 ```bash
 http://localhost:3000
-

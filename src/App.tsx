@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from "./Componets/Navbar/App"
 import Home from './Pages/Home/App';
 import './App.css'

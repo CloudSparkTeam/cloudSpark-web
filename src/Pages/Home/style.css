@@ -164,13 +164,15 @@
   justify-content: space-evenly;
 }
 
+
 .FilterControl {
   text-align: left;
   width: 35%;
-  height: 70%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 5%;
+  justify-content: space-around;
 }
 
 .FilterControlTitle {
@@ -185,6 +187,39 @@
   font-weight: 400;
 
 }
+
+.FilterControlDateContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.FilterControlDateRow{
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+}
+
+.FilterControlDateRow input[type="date"] {
+  font-size: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  outline: none;
+  transition: border-color 0.3s ease;
+  width: 25vw;
+}
+
+.FilterControlDateRow input[type="date"]:focus {
+  border-color: #2c80b1;
+}
+
+.FilterControlDateRow input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: brightness(0.7);
+}
+
+
+
 
 .FilterControlButtonsContainer {
   width: 100%;
@@ -239,16 +274,28 @@
 }
 
 .FilterSelect {
-  padding-top: 0.5%;
   width: 35%;
-  height: 70%;
+  height: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.FilterRow1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.FilterRow2 {
+  display: flex;
+  flex-direction: row;
   justify-content: space-around;
 }
 
 .FilterSelectItem {
   width: 40%;
-  height: 98%;
+  height: 35vh;
   display: flex;
   flex-direction: column;
   gap: 1%;
@@ -261,7 +308,7 @@
 
 .FilterSelectedItem {
   width: 40%;
-  height: 98%;
+  height: 35vh;
   display: flex;
   flex-direction: column;
   gap: 1%;
@@ -270,7 +317,6 @@
   border: 2px solid #1bb7e6;
   border-radius: 1vw;
   cursor: pointer;
-
 }
 
 .FilterSelectItem:hover {
@@ -297,7 +343,6 @@
   font-size: 120%;
 }
 
-/* Home/style.css */
 input[type="date"] {
   padding: 5px;
   margin-top: 10px;
@@ -314,5 +359,68 @@ input[type="range"] {
 
 span {
   font-size: 14px;
+  margin-left: 10px;
+}
+
+
+.Filter-Right {
+  display: flex;
+  flex-direction: column;
+}
+
+
+label {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  background: #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #2d84ac;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #4c8baf;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="range"]:hover {
+  background: #ccc;
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+  background: #3e578e;
+}
+
+input[type="range"]:active::-moz-range-thumb {
+  background: #3e578e;
+}
+
+span {
+  font-size: 14px;
+  color: #555;
   margin-left: 10px;
 }

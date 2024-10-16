@@ -65,7 +65,7 @@ const App = () => {
       console.error('Erro ao enviar dados para o backend:', error);
     }
   };
-  
+
   // Função que será passada para o MapSelector e que define as coordenadas do polígono
   const handleRegionSelect = (coords: { norte: number; sul: number; leste: number; oeste: number }) => {
     // Converta as coordenadas do polígono para um array para o uso interno
@@ -85,7 +85,7 @@ const App = () => {
           <Carrosel images={fotos} />
         </div>
       </div>
-{/*
+      {/*
       <div className='FeatureContainer'>
         <div className='Feature'>
           <div className='FeatureC1'></div>
@@ -133,76 +133,97 @@ const App = () => {
         <div className='FilterControl'>
           <div className='FilterControlTitle'>Filtrar Pesquisa</div>
           <div className='FilterControlDesc'>Filtra imagens com base na presença de nuvens e sombras</div>
+
+          <div className='FilterControlDateContainer'>
+            <div className='FilterControlDateRow'>
+              {/* Data de início */}
+              <div>
+                <label htmlFor="start-date" style={{fontSize:25}}>Data de Inicio:</label>
+                <input
+                  type="date"
+                  id="start-date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                />
+              </div>
+
+              {/* Data de fim */}
+              <div>
+                <label htmlFor="end-date" style={{fontSize:25}}>Data Final:</label>
+                <input
+                  type="date"
+                  id="end-date"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                />
+              </div>
+            </div>
+            
+          </div>
+
           <div className='FilterControlButtonsContainer'>
             <div className='FilterControlButtonsReset'>Limpar</div>
             <div className='FilterControlButtonsSearch' onClick={handleSearch}>Pesquisar</div>
           </div>
 
-          {/* Data de início */}
-          <div>
-            <label htmlFor="start-date">Data de Inicio:</label>
-            <input
-              type="date"
-              id="start-date"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-            />
-          </div>
 
-          {/* Data de fim */}
-          <div>
-            <label htmlFor="end-date">Data Final:</label>
-            <input
-              type="date"
-              id="end-date"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-            />
-          </div>
-
-          {/* Controle de porcentagem de nuvens */}
-          <div>
-            <label htmlFor="cloud-percentage">Porcentagem de Nuvens:</label>
-            <input
-              type="range"
-              id="cloud-percentage"
-              min="0"
-              max="100"
-              value={cloudPercentage}
-              onChange={(e) => setCloudPercentage(Number(e.target.value))}
-            />
-            <span>{cloudPercentage}%</span>
-          </div>
-
-          {/* Controle de porcentagem de sombras */}
-          <div>
-            <label htmlFor="shadow-percentage">Porcentagem de Sombras:</label>
-            <input
-              type="range"
-              id="shadow-percentage"
-              min="0"
-              max="100"
-              value={shadowPercentage}
-              onChange={(e) => setShadowPercentage(Number(e.target.value))}
-            />
-            <span>{shadowPercentage}%</span>
-          </div>
         </div>
+
 
         <div className='FilterSelect'>
-          <div className={CriteriaC ? 'FilterSelectItem' : 'FilterSelectedItem'} onClick={() => ChangeFeature('Cloud')}>
-            <div className='FilterSelectItemR1'></div>
-            <div className='FilterSelectItemR2'>Nuvens</div>
-            <div className='FilterSelectItemR3'>Escolha se deseja incluir nuvens ou não na sua pesquisa:</div>
+
+          <div className='FilterRow1'>
+            <div className={CriteriaC ? 'FilterSelectItem' : 'FilterSelectedItem'} onClick={() => ChangeFeature('Cloud')}>
+              <div className='FilterSelectItemR1'></div>
+              <div className='FilterSelectItemR2'>Nuvens</div>
+              <div className='FilterSelectItemR3'>Escolha se deseja incluir nuvens ou não na sua pesquisa:</div>
+            </div>
+
+            <div className={CriteriaS ? 'FilterSelectItem' : 'FilterSelectedItem'} onClick={() => ChangeFeature('Shadow')}>
+              <div className='FilterSelectItemR1'></div>
+              <div className='FilterSelectItemR2'>Sombras</div>
+              <div className='FilterSelectItemR3'>Escolha se deseja incluir sombras ou não na sua pesquisa:</div>
+            </div>
           </div>
 
-          <div className={CriteriaS ? 'FilterSelectItem' : 'FilterSelectedItem'} onClick={() => ChangeFeature('Shadow')}>
-            <div className='FilterSelectItemR1'></div>
-            <div className='FilterSelectItemR2'>Sombras</div>
-            <div className='FilterSelectItemR3'>Escolha se deseja incluir sombras ou não na sua pesquisa:</div>
+
+          <div className='FilterRow2'>
+            {/* Controle de porcentagem de nuvens */}
+            <div>
+              <label htmlFor="cloud-percentage">Porcentagem de Nuvens:</label>
+              <input
+                type="range"
+                id="cloud-percentage"
+                min="0"
+                max="100"
+                value={cloudPercentage}
+                onChange={(e) => setCloudPercentage(Number(e.target.value))}
+              />
+              <span>{cloudPercentage}%</span>
+            </div>
+
+            {/* Controle de porcentagem de sombras */}
+            <div>
+              <label htmlFor="shadow-percentage">Porcentagem de Sombras:</label>
+              <input
+                type="range"
+                id="shadow-percentage"
+                min="0"
+                max="100"
+                value={shadowPercentage}
+                onChange={(e) => setShadowPercentage(Number(e.target.value))}
+              />
+              <span>{shadowPercentage}%</span>
+            </div>
           </div>
+
 
         </div>
+
+
+
+
+
       </div>
       <ImagemTratada />
     </div>
@@ -210,3 +231,6 @@ const App = () => {
 };
 
 export default App;
+
+
+

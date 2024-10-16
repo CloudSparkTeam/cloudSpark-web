@@ -1,4 +1,5 @@
 import Navbar from "./Componets/Navbar/App"
+import NavbarL from "./Componets/NavbarLateral/App"
 import Home from './Pages/Home/App';
 import './App.css'
 
@@ -6,9 +7,30 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const App = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 800);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className='App'>
-      <Navbar/>
+      {isMobile ? (
+        <NavbarL />
+      ) : (
+        <div>
+          <Navbar />
+        </div>
+      )}
+
       <Home />
     </div>
   );

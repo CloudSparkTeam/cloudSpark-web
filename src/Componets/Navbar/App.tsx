@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.css'; // Importando o CSS global
-import { useState } from 'react';
+// import { useState } from 'react';
 import logo from "../../Images/logo.png";
 
 const App = () => {
-  const [Search, setSearch] = useState('');
+  // const [search, setSearch] = useState('');
   const fotoLogo = { url: logo, alt: "logo" };
 
   return (
@@ -25,7 +25,7 @@ const App = () => {
 
 
         <div className="InputContainer">
-          <input type="text" className="styled-input" required onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setSearch(e.target.value)} placeholder="⌕ Pesquisar" />
+          <input type="text" className="styled-input" required placeholder="⌕ Pesquisar" />
         </div>
 
       </div>

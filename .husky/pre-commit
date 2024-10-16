@@ -1,0 +1,5 @@
+echo 'Checando se há erros e rodando testes antes de commitar'
+npm run check ||
+(echo 'Erros verificados e testes falhados. Corrija os bugs antes de commitar' && exit 1)
+
+echo 'Done'

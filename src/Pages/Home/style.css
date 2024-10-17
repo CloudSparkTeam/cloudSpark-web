@@ -188,16 +188,12 @@
 
 }
 
-.FilterControlDateContainer{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
 
 .FilterControlDateRow{
   display: flex;
   flex-direction: column;
-  gap: 3vh;
+  gap: 1vh;
+  justify-content: center;
 }
 
 .FilterControlDateRow input[type="date"] {
@@ -228,6 +224,7 @@
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
+  z-index: 9;
 }
 
 .FilterControlButtonsSearch {
@@ -291,6 +288,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  z-index: 9;
 }
 
 .FilterSelectItem {
@@ -423,4 +421,83 @@ span {
   font-size: 14px;
   color: #555;
   margin-left: 10px;
+}
+
+
+
+  .Align-Center{
+    width: 100vw;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    gap: 6vh;
+  }
+  
+  @media (max-width: 1000px) {
+    .FilterControl{
+      flex-direction: column;
+    }
+
+    .Search-filter {
+      background-color: #1bb7e6;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+
+    .FilterControl{
+      background-color: blue;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .FilterDate{
+      display: flex;
+      justify-content: center;
+      width: 100vw;
+      flex-direction: column;
+    }
+
+    .FilterControlDateRow{
+      background-color: blueviolet;
+      display: flex;
+      width: 100vw;
+      flex-direction: column;
+    }
+
+    .FilterControlDateRow input[type="date"] {
+      font-size: 20px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      outline: none;
+      transition: border-color 0.3s ease;
+      width: 25vw;
+    }
+    
+    .FilterControlDateRow input[type="date"]:focus {
+      border-color: #2c80b1;
+    }
+    
+    .FilterControlDateRow input[type="date"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      filter: brightness(0.7);
+    }
+    
+    .DateTitle{
+      display: flex;
+      font-size: 3vw;
+      justify-content: center;
+    }
+
+    .DateInput{
+      display: flex;
+      font-size: 3vw;
+      justify-content: center;
+    }
+
 }

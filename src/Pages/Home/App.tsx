@@ -130,46 +130,49 @@ const App = () => {
       <br /><br />
 
       <div className='Search-filter'>
+        <div className='Align-Center'>
         <div className='FilterControl'>
           <div className='FilterControlTitle'>Filtrar Pesquisa</div>
           <div className='FilterControlDesc'>Filtra imagens com base na presença de nuvens e sombras</div>
 
-          <div className='FilterControlDateContainer'>
+
+
             <div className='FilterControlDateRow'>
-              {/* Data de início */}
-              <div>
-                <label htmlFor="start-date" style={{fontSize:25}}>Data de Inicio:</label>
-                <input
-                  type="date"
-                  id="start-date"
-                  value={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
-                />
-              </div>
 
-              {/* Data de fim */}
-              <div>
-                <label htmlFor="end-date" style={{fontSize:25}}>Data Final:</label>
-                <input
-                  type="date"
-                  id="end-date"
-                  value={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
-                />
+                <div className='FilterDate'>
+                  <div className='DateTitle'>
+                    <p>Data de Inicio:</p>
+                  </div>
+                  <div className='DateInput'>
+                  <input
+                    type="date"
+                    id="start-date"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                  />
+                  </div>
+                </div>
+
+                
+                <div className='FilterDate'>
+                  <div className='DateTitle'>
+                    <p>Data Final:</p>
+                  </div>
+                  <div className='DateInput'>
+                  <input
+                    type="date"
+                    id="end-date"
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                  />
+                  </div>
+                </div> 
               </div>
-            </div>
             
-          </div>
-
-          <div className='FilterControlButtonsContainer'>
-            <div className='FilterControlButtonsReset'>Limpar</div>
-            <div className='FilterControlButtonsSearch' onClick={handleSearch}>Pesquisar</div>
-          </div>
-
-
+            
         </div>
 
-
+        
         <div className='FilterSelect'>
 
           <div className='FilterRow1'>
@@ -188,7 +191,7 @@ const App = () => {
 
 
           <div className='FilterRow2'>
-            {/* Controle de porcentagem de nuvens */}
+            
             <div>
               <label htmlFor="cloud-percentage">Porcentagem de Nuvens:</label>
               <input
@@ -202,7 +205,7 @@ const App = () => {
               <span>{cloudPercentage}%</span>
             </div>
 
-            {/* Controle de porcentagem de sombras */}
+
             <div>
               <label htmlFor="shadow-percentage">Porcentagem de Sombras:</label>
               <input
@@ -215,16 +218,21 @@ const App = () => {
               />
               <span>{shadowPercentage}%</span>
             </div>
+
+            
           </div>
-
-
+          <div className='FilterControlButtonsContainer'>
+            <div className='FilterControlButtonsReset'>Limpar</div>
+            <div className='FilterControlButtonsSearch' onClick={handleSearch}>Pesquisar</div>
+          </div>
         </div>
-
-
-
-
-
+       
       </div>
+      </div>
+
+
+
+      
       <ImagemTratada />
     </div>
   );
@@ -234,3 +242,99 @@ export default App;
 
 
 
+      // <div className='Search-filter'>
+      //   <div className='FilterControl'>
+      //     <div className='FilterControlTitle'>Filtrar Pesquisa</div>
+      //     <div className='FilterControlDesc'>Filtra imagens com base na presença de nuvens e sombras</div>
+
+      //     <div className='FilterControlDateContainer'>
+      //       <div className='FilterControlDateRow'>
+      //         {/* Data de início */}
+      //         <div>
+      //           <label htmlFor="start-date" style={{fontSize:25}}>Data de Inicio:</label>
+      //           <input
+      //             type="date"
+      //             id="start-date"
+      //             value={startDate}
+      //             onChange={(e) => setStartDate(e.target.value)}
+      //           />
+      //         </div>
+
+      //         {/* Data de fim */}
+      //         <div>
+      //           <label htmlFor="end-date" style={{fontSize:25}}>Data Final:</label>
+      //           <input
+      //             type="date"
+      //             id="end-date"
+      //             value={endDate}
+      //             onChange={(e) => setEndDate(e.target.value)}
+      //           />
+      //         </div>
+      //       </div>
+            
+      //     </div>
+
+      //     <div className='FilterControlButtonsContainer'>
+      //       <div className='FilterControlButtonsReset'>Limpar</div>
+      //       <div className='FilterControlButtonsSearch' onClick={handleSearch}>Pesquisar</div>
+      //     </div>
+
+
+      //   </div>
+
+
+      //   <div className='FilterSelect'>
+
+      //     <div className='FilterRow1'>
+      //       <div className={CriteriaC ? 'FilterSelectItem' : 'FilterSelectedItem'} onClick={() => ChangeFeature('Cloud')}>
+      //         <div className='FilterSelectItemR1'></div>
+      //         <div className='FilterSelectItemR2'>Nuvens</div>
+      //         <div className='FilterSelectItemR3'>Escolha se deseja incluir nuvens ou não na sua pesquisa:</div>
+      //       </div>
+
+      //       <div className={CriteriaS ? 'FilterSelectItem' : 'FilterSelectedItem'} onClick={() => ChangeFeature('Shadow')}>
+      //         <div className='FilterSelectItemR1'></div>
+      //         <div className='FilterSelectItemR2'>Sombras</div>
+      //         <div className='FilterSelectItemR3'>Escolha se deseja incluir sombras ou não na sua pesquisa:</div>
+      //       </div>
+      //     </div>
+
+
+      //     <div className='FilterRow2'>
+      //       {/* Controle de porcentagem de nuvens */}
+      //       <div>
+      //         <label htmlFor="cloud-percentage">Porcentagem de Nuvens:</label>
+      //         <input
+      //           type="range"
+      //           id="cloud-percentage"
+      //           min="0"
+      //           max="100"
+      //           value={cloudPercentage}
+      //           onChange={(e) => setCloudPercentage(Number(e.target.value))}
+      //         />
+      //         <span>{cloudPercentage}%</span>
+      //       </div>
+
+      //       {/* Controle de porcentagem de sombras */}
+      //       <div>
+      //         <label htmlFor="shadow-percentage">Porcentagem de Sombras:</label>
+      //         <input
+      //           type="range"
+      //           id="shadow-percentage"
+      //           min="0"
+      //           max="100"
+      //           value={shadowPercentage}
+      //           onChange={(e) => setShadowPercentage(Number(e.target.value))}
+      //         />
+      //         <span>{shadowPercentage}%</span>
+      //       </div>
+      //     </div>
+
+
+      //   </div>
+
+
+
+
+
+      // </div>

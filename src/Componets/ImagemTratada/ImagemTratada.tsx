@@ -25,7 +25,7 @@ const App: React.FC = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center">
+        <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center "style={{ paddingTop: '10%' }}>
             <h1 className="text-3xl font-bold mb-6">Imagens Tratadas</h1>
 
             {loading ? (

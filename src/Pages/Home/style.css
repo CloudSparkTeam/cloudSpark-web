@@ -441,7 +441,6 @@ span {
     }
 
     .Search-filter {
-      background-color: #1bb7e6;
       width: 100vw;
       height: 100vh;
       display: flex;
@@ -450,7 +449,6 @@ span {
     }
 
     .FilterControl{
-      background-color: blue;
       width: 100vw;
       display: flex;
       flex-direction: column;
@@ -464,7 +462,6 @@ span {
     }
 
     .FilterControlDateRow{
-      background-color: blueviolet;
       display: flex;
       width: 100vw;
       flex-direction: column;
@@ -476,7 +473,7 @@ span {
       background-color: #f9f9f9;
       outline: none;
       transition: border-color 0.3s ease;
-      width: 25vw;
+      width: 40vw;
     }
     
     .FilterControlDateRow input[type="date"]:focus {
@@ -498,6 +495,15 @@ span {
       display: flex;
       font-size: 3vw;
       justify-content: center;
+    }
+    .FilterSelect{
+      width: 90vw;
+      height: 100vw;
+    }
+
+    .FilterSelectItemR1{
+      width: 20vw;
+      height: 20vw;
     }
 
 }

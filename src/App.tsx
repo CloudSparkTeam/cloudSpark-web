@@ -4,12 +4,14 @@ import './App.css'
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Login from "./Pages/Login/Login";
 
 const App = () => {
   return (
     <div className='App'>
-      <Navbar/>
-      <Home />
+      {/* <Navbar/>
+      <Home /> */}
+      <Login />
     </div>
   );
 };

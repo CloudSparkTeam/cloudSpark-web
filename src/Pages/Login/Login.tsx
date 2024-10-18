@@ -1,10 +1,14 @@
 import "./loginStyle.css";
 import logoTexto from "../../Images/CloudSpark.png";
 import logoMini from "../../Images/miniLOGO.png"
+import mapaBack from "../../Images/rascunhoGrandeMap2.png"
 
 export default function Login() {
     return(
         <>
+        <div className="imagem-background">
+            {/* <img src={mapaBack}  /> */}
+            </div>
             <div className="container">
                 <div className="lado-esquerdo">
                     <img src={logoTexto}/>

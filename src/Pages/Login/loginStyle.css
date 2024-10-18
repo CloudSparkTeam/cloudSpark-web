@@ -1,8 +1,12 @@
+
+
 .container {
     height: 100vh; /*nao esta sendo aplicado*/
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url("../../Images/mapaOpacoRascunho.png");
+    background-size: cover;
 }
 
 .lado-esquerdo {

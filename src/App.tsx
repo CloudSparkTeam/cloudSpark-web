@@ -10,10 +10,10 @@ import LoginEntrar from "./Pages/LoginEntrar/LoginEntrar";
 const App = () => {
   return (
     <div className='App'>
-      {/* <Navbar/>
-      <Home /> */}
+      <Navbar/>
+      <Home />
       {/* <Login /> */}
-      <LoginEntrar />
+      {/* <LoginEntrar /> */}
     </div>
   );
 };

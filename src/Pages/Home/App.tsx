@@ -7,12 +7,17 @@ import foto2 from "../../Images/foto2.png";
 import foto3 from "../../Images/foto3.png";
 import Nuvem from "../../Images/Icons/cloud-svgrepo-com.svg";
 import NuvemS from "../../Images/Icons/cloudShadow-svgrepo-com.svg";
+import PolyShow from "../../Images/Icons/polygonShow.svg";
+import PolyHide from "../../Images/Icons/polygonHide.svg";
+import PolyErase from "../../Images/Icons/polygonEraser.svg"
+
 import ImagemTratada from '../../Componets/ImagemTratada/ImagemTratada';
 import MapSelector from '../../Componets/MapSelector/MapSelector';
 
 const App = () => {
   const [CriteriaC, setCriteriaC] = useState(false);
   const [CriteriaS, setCriteriaS] = useState(false);
+  const [ShowPoly, setShowPoly] = useState(true);
   const fotos = [{ url: foto1, alt: "f1" }, { url: foto2, alt: "2" }, { url: foto3, alt: "3" }];
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
 
@@ -68,6 +73,10 @@ const App = () => {
       console.error('Erro ao enviar dados para o backend:', error);
     }
   };
+
+  const PolySwitch = () =>{
+    setShowPoly(!ShowPoly)
+  }
 
   // Função que será passada para o MapSelector e que define as coordenadas do polígono
   const handleRegionSelect = (coords: { norte: number; sul: number; leste: number; oeste: number }) => {
@@ -142,12 +151,20 @@ const App = () => {
         </div>
       </div>
 
-      <br /><br />
+
+      <div className='PolyControlRow'>
+        <div className='PolyControlButton'>
+          
+          <img src={PolyErase} alt="Nuvem"/>
+        </div>
+
+        <div className='PolyControlButton' onClick={PolySwitch}>
+          {ShowPoly?(<img src={PolyShow} alt="Nuvem"  />):(<img src={PolyHide} alt="Nuvem"/>)}    
+        </div>
+      </div>
+
 
       {isMobile ? (
-
-
-
         <div className='Search-filter'>
           <div className='Align-Center'>
             <div className='FilterControl'>
@@ -195,7 +212,7 @@ const App = () => {
             <div className='FilterSelect'>
 
               <div className='FilterRow1'>
-                <div className={CriteriaC ? 'FilterSelectedItem': 'FilterSelectItem'} onClick={() => ChangeFeature('Cloud')}>
+                <div className={CriteriaC ? 'FilterSelectedItem' : 'FilterSelectItem'} onClick={() => ChangeFeature('Cloud')}>
                   <div className='FilterSelectItemR1'>
                     <img src={Nuvem} alt="Nuvem" style={{ width: '85%', height: '85%' }} />
                   </div>
@@ -203,9 +220,9 @@ const App = () => {
                   <div className='FilterSelectItemR3'>Escolha se deseja incluir nuvens ou não na sua pesquisa:</div>
                 </div>
 
-                <div className={CriteriaS ? 'FilterSelectedItem': 'FilterSelectItem'} onClick={() => ChangeFeature('Shadow')}>
+                <div className={CriteriaS ? 'FilterSelectedItem' : 'FilterSelectItem'} onClick={() => ChangeFeature('Shadow')}>
                   <div className='FilterSelectItemR1'>
-                  <img src={NuvemS} alt="Sombra de Nuvem" style={{ width: '85%', height: '85%' }} />
+                    <img src={NuvemS} alt="Sombra de Nuvem" style={{ width: '85%', height: '85%' }} />
                   </div>
                   <div className='FilterSelectItemR2'>Sombras</div>
                   <div className='FilterSelectItemR3'>Escolha se deseja incluir sombras ou não na sua pesquisa:</div>
@@ -298,17 +315,17 @@ const App = () => {
             <div className='FilterSelect'>
 
               <div className='FilterRow1'>
-                <div className={CriteriaC ?  'FilterSelectedItem': 'FilterSelectItem'} onClick={() => ChangeFeature('Cloud')}>
+                <div className={CriteriaC ? 'FilterSelectedItem' : 'FilterSelectItem'} onClick={() => ChangeFeature('Cloud')}>
                   <div className='FilterSelectItemR1'>
-                  <img src={Nuvem} alt="Nuvem" style={{ width: '85%', height: '85%' }} />
+                    <img src={Nuvem} alt="Nuvem" style={{ width: '85%', height: '85%' }} />
                   </div>
                   <div className='FilterSelectItemR2'>Nuvens</div>
                   <div className='FilterSelectItemR3'>Escolha se deseja incluir nuvens ou não na sua pesquisa:</div>
                 </div>
 
-                <div className={CriteriaS ? 'FilterSelectedItem': 'FilterSelectItem'} onClick={() => ChangeFeature('Shadow')}>
+                <div className={CriteriaS ? 'FilterSelectedItem' : 'FilterSelectItem'} onClick={() => ChangeFeature('Shadow')}>
                   <div className='FilterSelectItemR1'>
-                  <img src={NuvemS} alt="Nuvem" style={{ width: '85%', height: '85%' }} />
+                    <img src={NuvemS} alt="Nuvem" style={{ width: '85%', height: '85%' }} />
                   </div>
                   <div className='FilterSelectItemR2'>Sombras</div>
                   <div className='FilterSelectItemR3'>Escolha se deseja incluir sombras ou não na sua pesquisa:</div>

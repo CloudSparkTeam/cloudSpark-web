@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/mapbox__mapbox-gl-draw": "^1.4.8",
     "concurrently": "^8.2.2"
   }

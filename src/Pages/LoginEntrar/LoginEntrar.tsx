@@ -2,6 +2,7 @@ import "./LoginEntrarStyles.css";
 import logoTexto from "../../Images/CloudSpark.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function LoginEntrar() {
 
@@ -11,18 +12,23 @@ export default function LoginEntrar() {
     const navigate = useNavigate();
 
     //função para executar login
-    function handleSubmit(): boolean {
-
-
+    async function handleSubmit(){
+        
+        const urlLogin = "";
+        const objetoUser = {}
         try{
+            const response = await axios.post(urlLogin, objetoUser)
+            .then((response) => {console.log(response)})
 
-            return true
+        
         }catch(error){
             window.alert("Não foi possível realizar o login")
-            return false
+            
         }
     }
 
+    //funcao para mudar de pagina se a validacao foi feita
+    //no momento nao faz validaçao apenas muda de pagina
     function handleNavigate() {
 
         //verifica se o login foi validado:

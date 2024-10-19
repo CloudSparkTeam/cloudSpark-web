@@ -7,6 +7,7 @@ import logo from "../../Images/logo.png";
 const App = () => {
   const [Search, setSearch] = useState('');
   const navigate = useNavigate(); // Definindo o hook de navegação
+
   const fotoLogo = { url: logo, alt: "logo" };
 
   return (
@@ -34,6 +35,7 @@ const App = () => {
             onChange={(e) => setSearch(e.target.value)} 
             placeholder="⌕ Pesquisar" 
           />
+
         </div>
       </div>
     </div>

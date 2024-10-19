@@ -6,59 +6,69 @@ import axios from "axios";
 
 export default function LoginEntrar() {
 
-    const [email,setEmail] = useState("");
-    const [senha,setSenha] = useState("");
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
 
     const navigate = useNavigate();
 
-    //função para executar login
-    async function handleSubmit(){
-        
-        const urlLogin = "";
-        const objetoUser = {}
-        try{
-            const response = await axios.post(urlLogin, objetoUser)
-            .then((response) => {console.log(response)})
+    // Função para executar login
+    async function handleSubmit() {
+        const urlLogin = "http://localhost:3002/login"; // URL da API
+        const objetoUser = {
+            email: email,
+            senha: senha
+        };
 
-        
-        }catch(error){
-            window.alert("Não foi possível realizar o login")
+        try {
+            const response = await axios.post(urlLogin, objetoUser);
+            console.log(response.data);
             
+            if (response.status === 200 && response.data.token) { // Verifica se login foi bem-sucedido e há um token
+                const token = response.data.token;
+
+                // Salvar token no localStorage (ou sessionStorage, se preferir)
+                localStorage.setItem('Token', token);
+
+                // Navega para a página "home"
+                navigate("/home");
+            } else {
+                window.alert("Login falhou. Verifique suas credenciais.");
+            }
+        } catch (error) {
+            console.error("Erro ao fazer login: ", error);
+            window.alert("Não foi possível realizar o login");
         }
     }
 
-    //funcao para mudar de pagina se a validacao foi feita
-    //no momento nao faz validaçao apenas muda de pagina
-    function handleNavigate() {
-
-        //verifica se o login foi validado:
-        // if(handleSubmit())
-        // {
-        //     navigate("/home")   
-        // }else{
-        //     console.log("deu erro")
-        // }
-        navigate("/home")
-    }
-
-    return(
+    return (
         <>
             <div className="container">
                 <div className="bloco-principal">
                     <h2 className="texto-login">Entre na sua conta</h2>
-                    <img src={logoTexto} className="imagem"/>
+                    <img src={logoTexto} className="imagem" alt="Logo"/>
 
                     <div className="bloco-inputs">
-                        <input className="inputs-entrar" type="text" placeholder="Email..." 
-                        value={email} onChange={e => setEmail(e.target.value)}></input>
-
-                        <input className="inputs-entrar" type="password" placeholder="Senha..." 
-                        value={senha} onChange={e => setSenha(e.target.value)} ></input>
+                        
+                        <input
+                            className="inputs-entrar"
+                            type="text"
+                            placeholder="Email..."
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                        
+                        <input  
+                            className="inputs-entrar"
+                            type="password"
+                            placeholder="Senha..."
+                            value={senha}
+                            onChange={e => setSenha(e.target.value)}
+                        />
                     </div>
 
-                    <button className="botao-entrar" onClick={handleNavigate}>Entrar</button>
+                    <button className="botao-entrar" onClick={handleSubmit}>Entrar</button>
                 </div>
             </div>
         </>
-    )
+    );
 }

@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LoginEntrar from './Pages/LoginEntrar/LoginEntrar';
 import Login from './Pages/Login/Login';
+import Perfil from './Pages/Profile/Perfil';
 
 const router = createBrowserRouter([{
   path: "/",
@@ -18,7 +19,13 @@ const router = createBrowserRouter([{
 {
   path: "/home",
   element: <App />
-}])
+},
+{
+  path: "/perfil",
+  element: <Perfil />
+},
+
+])
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

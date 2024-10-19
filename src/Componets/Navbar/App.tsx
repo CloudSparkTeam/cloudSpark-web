@@ -1,18 +1,16 @@
 import React from 'react';
 import './style.css'; // Importando o CSS global
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importando o useNavigate para navegação
 import logo from "../../Images/logo.png";
 
 const App = () => {
-  const [Search, setSearch] = useState('');
   const navigate = useNavigate(); // Definindo o hook de navegação
 
   const fotoLogo = { url: logo, alt: "logo" };
 
   return (
     <div className='NavbarRow'>
-      <div className='RowLeft' onClick={() => navigate('/home')}>
+      <div className='RowLeft' onClick={() => navigate('/')}>
         <div className='Icon'>
           <img src={fotoLogo.url} alt={fotoLogo.alt} className="logo" />
         </div>
@@ -21,10 +19,12 @@ const App = () => {
 
       <div className='RowRight'>
         <div className='Tabs'>
-          <div className='Tab' onClick={() => navigate('/home')}>Home</div>
-          <div className='Tab' >Informações</div>
-          <div className='Tab' >Suporte</div>
+          <div className='Tab' onClick={() => navigate('/')}>Home</div>
+          {/* <div className='Tab' >Informações</div> */}
+          {/* <div className='Tab' >Suporte</div> */}
+          <div className='Tab' onClick={() => navigate('/login')}>Login</div>
           <div className='Tab' onClick={() => navigate('/perfil')}>Perfil</div>
+          <div className='Tab' onClick={() => navigate('/cadastrousuario')}>Cadastrar Usuário</div>
         </div>
 
         <div className="InputContainer">
@@ -32,7 +32,6 @@ const App = () => {
             type="text" 
             className="styled-input" 
             required 
-            onChange={(e) => setSearch(e.target.value)} 
             placeholder="⌕ Pesquisar" 
           />
 

@@ -7,9 +7,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LoginEntrar from './Pages/LoginEntrar/LoginEntrar';
 import Login from './Pages/Login/Login';
 import Perfil from './Pages/Profile/Perfil';
+import CadastroUsuario from './Pages/CadastroUsuario/CadastroUsuario';
 
 const router = createBrowserRouter([{
-  path: "/",
+  path: "/login",
   element: <Login />
 },
 {
@@ -17,12 +18,16 @@ const router = createBrowserRouter([{
   element: <LoginEntrar />
 }, 
 {
-  path: "/home",
+  path: "/",
   element: <App />
 },
 {
   path: "/perfil",
   element: <Perfil />
+},
+{
+  path: "/cadastrousuario",
+  element: <CadastroUsuario />
 },
 
 ])

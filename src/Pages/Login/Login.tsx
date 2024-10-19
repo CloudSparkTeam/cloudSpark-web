@@ -1,3 +1,4 @@
+import React from "react";
 import "./loginStyle.css";
 import logoTexto from "../../Images/CloudSpark.png";
 import logoMini from "../../Images/miniLOGO.png";

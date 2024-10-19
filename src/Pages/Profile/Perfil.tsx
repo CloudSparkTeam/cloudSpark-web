@@ -84,7 +84,7 @@ export default function Perfil() {
         localStorage.setItem("Token", token);
 
         // Navega para a página "home"
-        navigate("/home");
+        navigate("/");
       } else {
         window.alert("Login falhou. Verifique suas credenciais.");
       }

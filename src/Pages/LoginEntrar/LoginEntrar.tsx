@@ -1,3 +1,4 @@
+import React from "react";
 import "./LoginEntrarStyles.css";
 import logoTexto from "../../Images/CloudSpark.png";
 import { useState } from "react";
@@ -30,7 +31,7 @@ export default function LoginEntrar() {
                 localStorage.setItem('Token', token);
 
                 // Navega para a página "home"
-                navigate("/home");
+                navigate("/");
             } else {
                 window.alert("Login falhou. Verifique suas credenciais.");
             }

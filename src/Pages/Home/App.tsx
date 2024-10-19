@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './style.css'; // CSS global
 import Carrosel from "../../Componets/Carrosel/Carrosel";
@@ -7,6 +7,7 @@ import foto2 from "../../Images/foto2.png";
 import foto3 from "../../Images/foto3.png";
 import ImagemTratada from '../../Componets/ImagemTratada/ImagemTratada';
 import MapSelector from '../../Componets/MapSelector/MapSelector';
+import { useNavigate } from "react-router-dom";
 
 const App = () => {
   const [CriteriaC, setCriteriaC] = useState(false);
@@ -19,13 +20,26 @@ const App = () => {
   const [shadowPercentage, setShadowPercentage] = useState<number>(0);
   const [polygonCoords, setPolygonCoords] = useState<google.maps.LatLngLiteral[]>([]);
 
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    const token = localStorage.getItem("Token"); // Pega o token do localStorage
+
+    if (!token) {
+      navigate("/"); // Redireciona para a página de login se o token não existir
+      return;
+    }
+  }, [navigate]); // O useEffect será executado ao carregar o componente
+
+
+
   const ChangeFeature = (botao: string) => {
     if (botao === 'Cloud') {
       setCriteriaC(!CriteriaC);
     } else if (botao === 'Shadow') {
       setCriteriaS(!CriteriaS);
     }
-  };
+  }; 
 
   const handleSearch = async () => {
     // Valida se as datas foram inseridas

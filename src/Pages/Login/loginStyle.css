@@ -1,0 +1,128 @@
+.imagem-fundo {
+    background-image: url("../../Images/mapaOpacoRascunho.png");
+    background-size: cover;
+    width: 100wh;
+    height: 100vh;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+/* .imagemfundo {
+    height: 100vh;
+    width: 100wh;
+    z-index: -1;
+    filter: blur(1px);
+} */
+
+.container2 {
+    padding-top: 50px;
+    z-index: 1;
+    height: 480px; /*nao esta sendo aplicado*/
+    /* width: 100vw; */
+    display: grid;
+    grid-template-columns: 362px 514px;
+    justify-content: center;
+    align-self: center;
+    /* align-items: center;
+    justify-content: center; */
+    
+    
+}
+
+.lado-esquerdo {
+    background-color: #0955AE;
+    height: 580;        /*nao esta sendo aplicado*/
+    width: 362;         /*nao esta sendo aplicado*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+
+.lado-direito {
+    background-color: #FFE607;
+    height: 580;        /*nao esta sendo aplicado*/
+    height: 514;     /*nao esta sendo aplicado*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+
+.botao-entrar {
+    height: 55px;
+    width: 170px;
+    border-radius: 20px;
+    color: #403E3E;
+    background-color: #FFE607;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.3 ease;
+    margin-top: 20px;
+
+}
+
+.botao-entrar:hover {
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+}
+
+.botao-cadastrar {
+    height: 55px;
+    width: 170px;
+    border-radius: 20px;
+    color: #403E3E;
+    background-color: #FFE607;
+    font-size: 20px;
+    font-weight: bold;
+    border-color: #FDFDFD;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.3 ease;
+    margin-top: 40px;
+}
+
+.botao-cadastrar:hover {
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+}
+
+.input-cadastro {
+    height: 50px;
+    width: 400px;
+    border-radius: 15px;
+    color: black;
+    font-size: 24;              /*nao esta sendo aplicado*/
+    font-weight: medium;    /*nao esta sendo aplicado*/
+    margin-top: 25px;
+}
+
+
+.input-cadastro::placeholder {
+    font-size: 24;  /*nao esta sendo aplicado*/
+    font-weight: medium;    /*nao esta sendo aplicado*/
+}
+
+.mini-logo {
+    margin-top: 45px;
+}
+
+.palavra-logo {
+    margin-top: 20px;
+}
+
+.texto-logo {
+    width: 280px;
+    text-align: center;
+}
+
+.texto-acessar-conta {
+    margin-top: 10px;
+}

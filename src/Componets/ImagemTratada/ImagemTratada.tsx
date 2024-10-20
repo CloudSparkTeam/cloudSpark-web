@@ -13,7 +13,7 @@ const App: React.FC = () => {
         try {
             const response = await axios.get('http://localhost:3002/imagemSatelite/imagens-tratadas');
             setImagens(response.data);
-        } catch (err) {
+        } catch {
             setError('Erro ao buscar imagens tratadas!');
         } finally {
             setLoading(false);
@@ -30,7 +30,7 @@ const App: React.FC = () => {
 
             {loading ? (
                 <p className="text-gray-600">Carregando imagens...</p>
-            ) : (
+            ) : imagens.length > 0 ? (
                 <div className="flex flex-wrap justify-center">
                     {imagens.map((imagem) => (
                         <div key={imagem.name} className="m-4">
@@ -43,6 +43,8 @@ const App: React.FC = () => {
                         </div>
                     ))}
                 </div>
+            ) : (
+                <p className="text-gray-600">Nenhuma imagem para exibir</p>
             )}
 
             {error && <p className="text-red-500">{error}</p>}

@@ -18,7 +18,7 @@
 }
 
 .RowRight {
-  width: 50vw;
+  width: 50vw; /* Mantive 50vw pois parece ser a largura mais apropriada */
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -107,20 +107,18 @@
   object-fit: contain;
 }
 
-
 .search-buttonNav {
   width: 5vh;
   height: 5vh;
   background-color: rgba(255, 255, 255, 0.466);
   border: none;
   color: white;
-  font-size: 2vh; /* Tamanho da lupa ajustado para não ocupar todo o espaço */
+  font-size: 2vh;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  z-index: 2; /* Mantém o botão acima do input */
-  position: absolute; /* Para que o botão fique sobre o input */
-
-  border-top-right-radius: 50% ;
+  z-index: 2;
+  position: absolute;
+  border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
 }
 
@@ -128,11 +126,11 @@
   padding: 8px 12px;
   font-size: 3.5vh;
   border: 2px solid #dcdcdc;
-  width: 100%; /* Faz o input ocupar todo o espaço disponível */
+  width: 100%;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-in-out;
-  z-index: 1; /* Mantém o input abaixo do botão */
+  z-index: 1;
   height: 10vh;
   margin-right: 9.3vw;
 }
@@ -141,14 +139,13 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  transition: width 0.5s ease-in-out; /* Animação de transição suave */
-  width: 10vh; /* Largura inicial quando só o botão é mostrado */
-  overflow: hidden; /* Garante que o input fique escondido na transição */
-  position: relative; /* Adiciona posição relativa para gerenciar o z-index */
+  transition: width 0.5s ease-in-out;
+  width: 10vh;
+  overflow: hidden;
+  position: relative;
   height: 10vh;
 }
 
-/* Exibir input quando o estado está ativo */
 .search-boxNav.active .search-inputNav {
   opacity: 1;
   visibility: visible;
@@ -159,111 +156,108 @@
 }
 
 .search-boxNav.active {
-  width: 20vw; /* Largura expandida quando o input é exibido */
+  width: 20vw;
   height: 10vh;
 }
-
 
 /* Media queries para telas menores */
 
 @media (max-width: 1300px) {
   .NavbarRow {
-    height: 12vh; /* Aumenta a altura da navbar em telas menores */
-    gap: 2vw; /* Diminui o espaçamento */
+    height: 12vh;
+    gap: 2vw;
   }
 
   .RowLeft {
-    width: 40vw; /* Aumenta a largura para acomodar em telas pequenas */
+    width: 40vw;
     gap: 2vw;
     padding-left: 1vw;
   }
 
   .RowRight {
-    width: 60vw; /* Ajusta o tamanho da RowRight */
-    gap: 1vw; /* Diminui o gap para telas menores */
+    width: 60vw;
+    gap: 1vw;
   }
 
   .Icon {
-    width: 8vw; /* Aumenta o tamanho dos ícones em telas menores */
+    width: 8vw;
     height: 8vw;
   }
 
   .Title {
-    font-size: 5vw; /* Aumenta o tamanho da fonte para telas pequenas */
+    font-size: 5vw;
   }
 
   .Tabs {
-    width: 40vw; /* Ajusta a largura da seção de abas */
+    width: 40vw;
   }
 
   .Tab {
-    font-size: 3vw; /* Aumenta o tamanho da fonte das abas */
+    font-size: 3vw;
     padding-right: 1vw;
     padding-left: 1vw;
   }
 
   .InputContainer {
-    width: 1vw; /* Aumenta a largura do input em telas menores */
+    width: 1vw;
   }
 
   .styled-input {
-    font-size: 2.5vw; /* Aumenta o tamanho da fonte do input */
-    padding: 1vw; /* Ajusta o padding do input */
+    font-size: 2.5vw;
+    padding: 1vw;
   }
-  .InputContainer{
+
+  .InputContainer {
     width: auto;
   }
-
 }
-
-
 
 @media (max-width: 1000px) {
   .NavbarRow {
-    height: 12vh; /* Aumenta a altura da navbar em telas menores */
-    gap: 2vw; /* Diminui o espaçamento */
+    height: 12vh;
+    gap: 2vw;
   }
 
   .RowLeft {
-    width: 40vw; /* Aumenta a largura para acomodar em telas pequenas */
+    width: 40vw;
     gap: 2vw;
     padding-left: 1vw;
   }
 
   .RowRight {
-    width: 60vw; /* Ajusta o tamanho da RowRight */
-    gap: 1vw; /* Diminui o gap para telas menores */
+    width: 60vw;
+    gap: 1vw;
   }
 
   .Icon {
-    width: 8vw; /* Aumenta o tamanho dos ícones em telas menores */
+    width: 8vw;
     height: 8vw;
   }
 
   .Title {
-    font-size: 5vw; /* Aumenta o tamanho da fonte para telas pequenas */
+    font-size: 5vw;
   }
 
   .Tabs {
-    width: 40vw; /* Ajusta a largura da seção de abas */
+    width: 40vw;
   }
 
   .Tab {
-    font-size: 3vw; /* Aumenta o tamanho da fonte das abas */
+    font-size: 3vw;
     padding-right: 1vw;
     padding-left: 1vw;
   }
 
   .InputContainer {
-    width: 30vw; /* Aumenta a largura do input em telas menores */
+    width: 30vw;
   }
 
   .styled-input {
-    font-size: 2.5vw; /* Aumenta o tamanho da fonte do input */
-    padding: 1vw; /* Ajusta o padding do input */
-  }
-  .InputContainer{
-    width: auto;
+    font-size: 2.5vw;
+    padding: 1vw;
   }
 
+  .InputContainer {
+    width: auto;
+  }
 }

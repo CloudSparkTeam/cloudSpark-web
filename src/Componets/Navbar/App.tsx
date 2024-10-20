@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react'; // Importando useState corretamente
 import './style.css'; // Importando o CSS global
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importando o useNavigate para navegação
 import logo from "../../Images/logo.png";
 
 const App = () => {
-  const [Search, setSearch] = useState('');
-  const fotoLogo = { url: logo, alt: "logo" };
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1400);
+  const navigate = useNavigate(); // Definindo o hook de navegação
 
+  const fotoLogo = { url: logo, alt: "logo" };
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1400); // Correção: useState importado corretamente
   const [searchVisible, setSearchVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState(''); // Estado para armazenar o valor do input
 
@@ -15,7 +15,7 @@ const App = () => {
     setSearchVisible(!searchVisible);
   };
 
-  const handleInputChange = (e: { target: { value: React.SetStateAction<string> } }) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
@@ -33,7 +33,7 @@ const App = () => {
 
   return (
     <div className='NavbarRow'>
-      <div className='RowLeft'>
+      <div className='RowLeft' onClick={() => navigate('/')}>
         <div className='Icon'>
           <img src={fotoLogo.url} alt={fotoLogo.alt} className="logo" />
         </div>
@@ -42,20 +42,15 @@ const App = () => {
 
       <div className='RowRight'>
         <div className='Tabs'>
-          <div className='Tab'>Home</div>
-          <div className='Tab'>Informações</div>
-          <div className='Tab'>Suporte</div>
-        </div>
-
-
-        <div className="InputContainer">
-          {isMobile ? (        <div className={`search-boxNav ${searchVisible ? 'active' : ''}`}>
-         
-        </div>) : (<input type="text" className="styled-input" required onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setSearch(e.target.value)} placeholder="⌕ Pesquisar" />)}
+          <div className='Tab' onClick={() => navigate('/')}>Home</div>
+          {/* <div className='Tab' >Informações</div> */}
+          {/* <div className='Tab' >Suporte</div> */}
+          <div className='Tab' onClick={() => navigate('/login')}>Login</div>
+          <div className='Tab' onClick={() => navigate('/perfil')}>Perfil</div>
+          <div className='Tab' onClick={() => navigate('/cadastrousuario')}>Cadastrar</div>
         </div>
 
       </div>
-
     </div>
   );
 };

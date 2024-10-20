@@ -55,14 +55,14 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
         }
     }, [norte, sul, leste, oeste]);
 
-    const handleMapClick = (e: google.maps.MapMouseEvent) => {
-        const latLng = e.latLng?.toJSON();
-        if (latLng && polygonCoords.length < 4) {
-            setPolygonCoords([...polygonCoords, latLng]);
-        } else if (polygonCoords.length === 4) {
-            console.log('Você já selecionou 4 pontos.');
-        }
-    };
+    // const handleMapClick = (e: google.maps.MapMouseEvent) => {
+    //     const latLng = e.latLng?.toJSON();
+    //     if (latLng && polygonCoords.length < 4) {
+    //         setPolygonCoords([...polygonCoords, latLng]);
+    //     } else if (polygonCoords.length === 4) {
+    //         console.log('Você já selecionou 4 pontos.');
+    //     }
+    // };
 
     const handlePolygonClick = (event: google.maps.MapMouseEvent) => {
         const latLng = event.latLng?.toJSON();

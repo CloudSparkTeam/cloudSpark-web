@@ -13,6 +13,7 @@ import PolyErase from "../../Images/Icons/polygonEraser.svg"
 
 import ImagemTratada from '../../Componets/ImagemTratada/ImagemTratada';
 import MapSelector from '../../Componets/MapSelector/MapSelector';
+import { useNavigate } from "react-router-dom";
 
 const App = () => {
   const [CriteriaC, setCriteriaC] = useState(false);
@@ -27,13 +28,26 @@ const App = () => {
   const [shadowPercentage, setShadowPercentage] = useState<number>(0);
   const [polygonCoords, setPolygonCoords] = useState<google.maps.LatLngLiteral[]>([]);
 
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    const token = localStorage.getItem("Token"); // Pega o token do localStorage
+
+    if (!token) {
+      navigate("/"); // Redireciona para a página de login se o token não existir
+      return;
+    }
+  }, [navigate]); // O useEffect será executado ao carregar o componente
+
+
+
   const ChangeFeature = (botao: string) => {
     if (botao === 'Cloud') {
       setCriteriaC(!CriteriaC);
     } else if (botao === 'Shadow') {
       setCriteriaS(!CriteriaS);
     }
-  };
+  }; 
 
   const handleSearch = async () => {
     // Valida se as datas foram inseridas
@@ -49,25 +63,35 @@ const App = () => {
     }
 
     // Extrair coordenadas
-    const coordenada_norte = polygonCoords[0].lat;
-    const coordenada_sul = polygonCoords[1].lat;
-    const coordenada_leste = polygonCoords[2].lng;
-    const coordenada_oeste = polygonCoords[3].lng;
+    const latitudes = polygonCoords.map(coord => coord.lat);
+    const longitudes = polygonCoords.map(coord => coord.lng);
+
+    // Extrair coordenadas
+    const coordenada_norte = Math.max(...latitudes); // Ponto mais ao norte
+    const coordenada_sul = Math.min(...latitudes);   // Ponto mais ao sul
+    const coordenada_leste = Math.max(...longitudes); // Ponto mais a leste
+    const coordenada_oeste = Math.min(...longitudes); // Ponto mais a oeste
+
+    // Exibir os dados que serão enviados
+    const dataToSend = {
+      coordenada_norte,
+      coordenada_sul,
+      coordenada_leste,
+      coordenada_oeste,
+      data_imagem: new Date().toISOString(), // Formato ISO 8601
+      status: "ativo", // Ajuste conforme necessário
+      startDate: new Date(startDate).toISOString(), // Formato ISO 8601
+      endDate: new Date(endDate).toISOString(), // Formato ISO 8601
+      cloudPercentage,
+      shadowPercentage,
+      // usuario_id: 1, // Descomente e altere conforme necessário
+    };
+
+    console.log('Dados enviados para o backend:', dataToSend);
+
 
     try {
-      const response = await axios.post('http://localhost:3002/imagemSatelite/criar', {
-        coordenada_norte,
-        coordenada_sul,
-        coordenada_leste,
-        coordenada_oeste,
-        data_imagem: new Date().toISOString(), // Formato ISO 8601
-        status: "ativo", // Ajuste conforme necessário
-        startDate: new Date(startDate).toISOString(), // Formato ISO 8601
-        endDate: new Date(endDate).toISOString(), // Formato ISO 8601
-        cloudPercentage,
-        shadowPercentage,
-        // usuario_id: 1, // Descomente e altere conforme necessário
-      });
+      const response = await axios.post('http://localhost:3002/imagemSatelite/criar', dataToSend);
       console.log('Resposta do backend:', response.data);
     } catch (error) {
       console.error('Erro ao enviar dados para o backend:', error);
@@ -376,7 +400,7 @@ const App = () => {
 
 
 
-      <ImagemTratada />
+      {/* <ImagemTratada /> */}
     </div>
   );
 };

@@ -1,10 +1,9 @@
+import React, { useEffect, useState } from "react";
 import Navbar from "./Componets/Navbar/App"
 import NavbarL from "./Componets/NavbarLateral/App"
 import Home from './Pages/Home/App';
 import './App.css'
 
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 const App = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 800);

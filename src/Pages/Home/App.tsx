@@ -129,7 +129,7 @@ const App = () => {
     <div className='HomeContainer'>
       <div className='CarroselContainer'>
         <div className='Carrosel'>
-          <Carrosel images={fotos} />
+          <Carrosel/>
         </div>
       </div>
       {/*

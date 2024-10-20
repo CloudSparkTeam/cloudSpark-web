@@ -1,17 +1,67 @@
 import React, { useState, useEffect, useRef } from "react";
+import axios from "axios"; // Certifique-se de importar axios
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 
-type imageUrls = {
-    images: {
-        url: string;
-        alt: string;
-    }[];
+type ImageUrl = {
+    url: string;
+    name: string;
 };
 
-export function ImageSlider({ images }: imageUrls) {
-    const [imageIndex, setImageIndex] = useState(0);
-    const intervalRef = useRef<NodeJS.Timeout | null>(null);
+interface ModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    image: ImageUrl;
+    onNext: () => void;
+    onPrev: () => void;
+    goToImageDetails: () => void;
+}
 
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, image, onNext, onPrev, goToImageDetails }) => {
+    if (!isOpen) return null;
+
+    return (
+        <div className="modal-overlay">
+            <div className="modal-content">
+                <button onClick={onPrev} className="modal-btn">Anterior</button>
+                <img src={image.url} alt={image.name} className="modal-image" />
+                <button onClick={onNext} className="modal-btn">Próximo</button>
+                <div className="modal-details-btn-container">
+                    <button onClick={goToImageDetails} className="modal-details-btn">Ver detalhes da imagem</button>
+                </div>
+                <button onClick={onClose} className="modal-close">Fechar</button>
+            </div>
+        </div>
+    );
+};
+
+
+export function ImageSlider() {
+    const [images, setImages] = useState<ImageUrl[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [imageIndex, setImageIndex] = useState(0);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
+    const navigate = useNavigate();
+
+    // Função para buscar imagens tratadas
+    const fetchImagensTratadas = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await axios.get('http://localhost:3002/imagemSatelite/imagens-tratadas');
+            setImages(response.data);
+        } catch {
+            setError('Erro ao buscar imagens tratadas!');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchImagensTratadas(); // Busca as imagens quando o componente é montado
+    }, []);
 
     function resetInterval() {
         if (intervalRef.current) clearInterval(intervalRef.current);
@@ -20,11 +70,8 @@ export function ImageSlider({ images }: imageUrls) {
         }, 3000);
     }
 
-    
     useEffect(() => {
         resetInterval();
-
-        
         return () => {
             if (intervalRef.current) clearInterval(intervalRef.current);
         };
@@ -45,20 +92,46 @@ export function ImageSlider({ images }: imageUrls) {
         resetInterval(); 
     }
 
+    function openModal(index: number) {
+        setImageIndex(index);
+        setIsModalOpen(true);
+    }
+
+    function closeModal() {
+        setIsModalOpen(false);
+    }
+
+    const goToImageDetails = () => {
+        navigate("/detalhes-imagem", { state: { image: images[imageIndex] } });
+    };
+
+    if (loading) {
+        return <p>Carregando...</p>;
+    }
+
+    if (error) {
+        return <p className="text-red-600">{error}</p>;
+    }
+
+    if (images.length === 0) {
+        return <p className="text-gray-600">Nenhuma imagem para exibir</p>;
+    }
+
     return (
         <section
             aria-label="Image Slider"
             style={{ width: "100%", height: "100%", position: "relative" }}
         >
             <div style={{ width: "100%", height: "100%", display: "flex", overflow: "hidden", borderRadius: 20 }}>
-                {images.map(({ url, alt }, index) => (
+                {images.map(({ url, name }, index) => (
                     <img
                         key={url}
                         src={url}
-                        alt={alt}
+                        alt={name}
                         aria-hidden={imageIndex !== index}
                         className="img-slider-img"
                         style={{ translate: `${-100 * imageIndex}%` }}
+                        onClick={() => openModal(index)} // Abre o modal ao clicar na imagem
                     />
                 ))}
             </div>
@@ -82,6 +155,16 @@ export function ImageSlider({ images }: imageUrls) {
                 ))}
             </div>
             <div id="after-image-slider-controls" />
+            
+            {/* Modal para exibir a imagem em tamanho maior */}
+            <Modal
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                image={images[imageIndex]}
+                onNext={() => showNextImage()}
+                onPrev={() => showPrevImage()}
+                goToImageDetails={goToImageDetails} // Passa a função para o modal
+            />
         </section>
     );
 }

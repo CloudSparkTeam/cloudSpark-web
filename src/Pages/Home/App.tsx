@@ -11,7 +11,6 @@ import PolyShow from "../../Images/Icons/polygonShow.svg";
 import PolyHide from "../../Images/Icons/polygonHide.svg";
 import PolyErase from "../../Images/Icons/polygonEraser.svg"
 
-import ImagemTratada from '../../Componets/ImagemTratada/ImagemTratada';
 import MapSelector from '../../Componets/MapSelector/MapSelector';
 import { useNavigate } from "react-router-dom";
 

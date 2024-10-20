@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'; // Importando useState corretamente
+import React from 'react'; // Importando useState corretamente
 import './style.css'; // Importando o CSS global
 import { useNavigate } from 'react-router-dom'; // Importando o useNavigate para navegação
 import logo from "../../Images/logo.png";
@@ -7,29 +7,6 @@ const App = () => {
   const navigate = useNavigate(); // Definindo o hook de navegação
 
   const fotoLogo = { url: logo, alt: "logo" };
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1400); // Correção: useState importado corretamente
-  const [searchVisible, setSearchVisible] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(''); // Estado para armazenar o valor do input
-
-  const toggleSearch = () => {
-    setSearchVisible(!searchVisible);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1400);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   return (
     <div className='NavbarRow'>

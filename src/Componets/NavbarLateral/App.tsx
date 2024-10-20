@@ -5,7 +5,6 @@ import logo from "../../Images/logo.png";
 import MenuIcon from "../../Images/Icons/menu-svgrepo-com.svg";
 
 const App = () => {
-  const [Search, setSearch] = useState('');
   const [Menu, setMenu] = useState(false);
   const fotoLogo = { url: logo, alt: "logo" };
 

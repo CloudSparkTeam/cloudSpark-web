@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // Importando useState corretamente
 import './style.css'; // Importando o CSS global
 import { useNavigate } from 'react-router-dom'; // Importando o useNavigate para navegação
 import logo from "../../Images/logo.png";
@@ -24,18 +24,9 @@ const App = () => {
           {/* <div className='Tab' >Suporte</div> */}
           <div className='Tab' onClick={() => navigate('/login')}>Login</div>
           <div className='Tab' onClick={() => navigate('/perfil')}>Perfil</div>
-          <div className='Tab' onClick={() => navigate('/cadastrousuario')}>Cadastrar Usuário</div>
+          <div className='Tab' onClick={() => navigate('/cadastrousuario')}>Cadastrar</div>
         </div>
 
-        <div className="InputContainer">
-          <input 
-            type="text" 
-            className="styled-input" 
-            required 
-            placeholder="⌕ Pesquisar" 
-          />
-
-        </div>
       </div>
     </div>
   );

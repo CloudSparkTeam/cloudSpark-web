@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importa o hook useNavigate
 import './style.css'; // Importando o arquivo CSS
+import Navbar from '../../Componets/Navbar/App';
 
 const CadastroUsuario = () => {
   const [nome, setNome] = useState('');
@@ -42,38 +43,35 @@ const CadastroUsuario = () => {
   };
 
   return (
-    <div className='HomeContainer'>
+
+    <><Navbar /><div className='HomeContainer'>
       <div className='card'>
         <h2 className='title'>Cadastre a sua conta</h2>
-        
+
         <input
           className='input'
           type='text'
           placeholder='Nome...'
           value={nome}
-          onChange={(e) => setNome(e.target.value)}
-        />
+          onChange={(e) => setNome(e.target.value)} />
         <input
           className='input'
           type='email'
           placeholder='Email...'
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          onChange={(e) => setEmail(e.target.value)} />
         <input
           className='input'
           type='password'
           placeholder='Senha...'
           value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-        />
+          onChange={(e) => setSenha(e.target.value)} />
         <input
           className='input'
           type='date'
           placeholder='Data de Nascimento'
           value={dataNascimento}
-          onChange={(e) => setDataNascimento(e.target.value)}
-        />
+          onChange={(e) => setDataNascimento(e.target.value)} />
 
         <button className='linkText' onClick={() => navigate('/login')}>
           Já tenho uma conta!
@@ -87,7 +85,7 @@ const CadastroUsuario = () => {
           Continuar sem cadastrar conta
         </button>
       </div>
-    </div>
+    </div></>
   );
 }
 

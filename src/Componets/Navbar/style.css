@@ -1,26 +1,26 @@
-.NavbarRow{
+.NavbarRow {
   padding-top: 0.5vh;
-  background-color: #dcdcdc;
+  background-color: #9DC0E999;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  gap: 10%;
-  height: 8Vh;
+  height: 8vh;
   color: #ffffffe9;
+  gap: 20vw;
+  align-items: center;
 }
 
-.RowLeft{
-  width: 50vw;
+.RowLeft {
+  width: 30vw;
   display: flex;
   align-items: center;
   gap: 1vw;
   padding-left: 2vw;
 }
 
-.RowRight{
-  width: 80vw;
+.RowRight {
+  width: 50vw; /* Mantive 50vw pois parece ser a largura mais apropriada */
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -28,82 +28,236 @@
   color: #333;
   align-items: center;
   justify-content: center;
-  width:3.3vw;
+  width: 3.3vw;
   height: 3.3vw;
   background-color: #333;
   border-radius: 50%;
 }
 
 .Title {
-  font-size: 28px;
+  font-size: 2.5vw;
   font-weight: bold;
   color: #333;
 }
 
-.Tabs{
+.Tabs {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: 100%;
-  width: 30%;
-  gap: 15%;
+  width: 25vw;
+  gap: 1vw;
   color: #333;
   font-weight: 400;
 }
 
-.Tabs div:hover {
+.Tab:hover {
   background-color: #0002;
-  border-radius: 15%;
+  gap: 1vw;
+  border-radius: 0.6vw;
   height: 90%;
-  padding-left: 2%;
-  padding-right: 2%;
 }
 
-.Tab{
-  height: 100%;
-  width: 33%;
-  padding-right: 1%;
-  padding-left: 1%;
-}
-
-.Tabs div {
+.Tab {
   height: 98%;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border-radius: 20%;
+  border-radius: 0.6vw;
+  font-size: 1.5vw;
+  height: 100%;
+  padding-right: 1vw;
+  padding-left: 1vw;
 }
 
-.InputContainer{
+.InputContainer {
   display: flex;
-  align-items: center;
+  justify-content: center;
   height: 90%;
+  width: 15vw;
 }
 
 .styled-input {
-  width: 100%;                   /* Largura total do contêiner */
-  padding: 7px;                 /* Espaçamento interno */
-  border: 2px solid #bbb9;        /* Borda cinza clara */
-  border-radius: 5px;           /* Bordas arredondadas */
-  font-size: 14px;               /* Tamanho da fonte */
-  transition: border-color 0.3s; /* Transição suave para a mudança de cor */
+  width: 100%;
+  padding: 0.4vw;
+  border: 2px solid #bbb9;
+  border-radius: 5px;
+  font-size: 1vw;
+  transition: border-color 0.3s;
+  text-align: center;
+  display: flex;
+  padding-right: 7%;
 }
 
 .styled-input:focus {
-  border-color: #3339;        /* Muda a cor da borda ao focar */
-  outline: none;                /* Remove o contorno padrão */
+  border-color: #3339;
+  outline: none;
 }
 
 .styled-input::placeholder {
-  color: #333;                  /* Cor do placeholder */
-  opacity: 1;                   /* Garantir que o placeholder seja totalmente opaco */
+  color: #333;
+  opacity: 1;
 }
 
 .logo {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Ajusta a imagem dentro do contêiner sem distorção */
+  object-fit: contain;
+}
+
+.search-buttonNav {
+  width: 5vh;
+  height: 5vh;
+  background-color: rgba(255, 255, 255, 0.466);
+  border: none;
+  color: white;
+  font-size: 2vh;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 2;
+  position: absolute;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.search-inputNav {
+  padding: 8px 12px;
+  font-size: 3.5vh;
+  border: 2px solid #dcdcdc;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 1;
+  height: 10vh;
+  margin-right: 9.3vw;
+}
+
+.search-boxNav {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  transition: width 0.5s ease-in-out;
+  width: 10vh;
+  overflow: hidden;
+  position: relative;
+  height: 10vh;
+}
+
+.search-boxNav.active .search-inputNav {
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-inputNav:focus {
+  outline: none;
+}
+
+.search-boxNav.active {
+  width: 20vw;
+  height: 10vh;
+}
+
+/* Media queries para telas menores */
+
+@media (max-width: 1300px) {
+  .NavbarRow {
+    height: 12vh;
+    gap: 2vw;
+  }
+
+  .RowLeft {
+    width: 40vw;
+    gap: 2vw;
+    padding-left: 1vw;
+  }
+
+  .RowRight {
+    width: 60vw;
+    gap: 1vw;
+  }
+
+  .Icon {
+    width: 8vw;
+    height: 8vw;
+  }
+
+  .Title {
+    font-size: 5vw;
+  }
+
+  .Tabs {
+    width: 40vw;
+  }
+
+  .Tab {
+    font-size: 3vw;
+    padding-right: 1vw;
+    padding-left: 1vw;
+  }
+
+  .InputContainer {
+    width: 1vw;
+  }
+
+  .styled-input {
+    font-size: 2.5vw;
+    padding: 1vw;
+  }
+
+  .InputContainer {
+    width: auto;
+  }
+}
+
+@media (max-width: 1000px) {
+  .NavbarRow {
+    height: 12vh;
+    gap: 2vw;
+  }
+
+  .RowLeft {
+    width: 40vw;
+    gap: 2vw;
+    padding-left: 1vw;
+  }
+
+  .RowRight {
+    width: 60vw;
+    gap: 1vw;
+  }
+
+  .Icon {
+    width: 8vw;
+    height: 8vw;
+  }
+
+  .Title {
+    font-size: 5vw;
+  }
+
+  .Tabs {
+    width: 40vw;
+  }
+
+  .Tab {
+    font-size: 3vw;
+    padding-right: 1vw;
+    padding-left: 1vw;
+  }
+
+  .InputContainer {
+    width: 30vw;
+  }
+
+  .styled-input {
+    font-size: 2.5vw;
+    padding: 1vw;
+  }
+
+  .InputContainer {
+    width: auto;
+  }
 }

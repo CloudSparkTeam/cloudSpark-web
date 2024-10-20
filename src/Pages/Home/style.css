@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 100%;
+  width: 98%;
   gap: 7vh;
 }
 
@@ -158,19 +158,24 @@
 
 .Search-filter {
   width: 100%;
-  height: 50vh;
+  height: 70vh;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  background-color: #9DC0E999;
 }
+
 
 .FilterControl {
   text-align: left;
   width: 35%;
-  height: 70%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 5%;
+  justify-content: space-around;
 }
 
 .FilterControlTitle {
@@ -186,6 +191,35 @@
 
 }
 
+
+.FilterControlDateRow{
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  justify-content: center;
+}
+
+.FilterControlDateRow input[type="date"] {
+  font-size: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  outline: none;
+  transition: border-color 0.3s ease;
+  width: 25vw;
+}
+
+.FilterControlDateRow input[type="date"]:focus {
+  border-color: #2c80b1;
+}
+
+.FilterControlDateRow input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: brightness(0.7);
+}
+
+
+
+
 .FilterControlButtonsContainer {
   width: 100%;
   height: 6.5vh;
@@ -193,6 +227,7 @@
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
+  z-index: 9;
 }
 
 .FilterControlButtonsSearch {
@@ -202,18 +237,19 @@
   width: 40%;
   height: 90%;
   border-radius: 0.5vw;
-  border: 2px solid #000;
-  background-color: #eee;
+  border: 2px solid #FFE925;
+  background-color: #ffe925be;
   color: #333;
-  font-size: 150%;
+  font-size: 160%;
   font-weight: 600;
   cursor: pointer;
 }
 
 .FilterControlButtonsSearch:hover {
-  background-color: #00000025;
+  background-color: #FFE925;
   font-size: 190%;
   transition: background-color 0.1s ease-in-out;
+  border: 2px solid #9DC0E9;
 }
 
 .FilterControlButtonsReset {
@@ -223,54 +259,66 @@
   width: 40%;
   height: 90%;
   border-radius: 0.5vw;
-  border: 2px solid #333;
-  background-color: #333;
-  color: #dcdcdc;
+  border: 1px solid #FFE925;
+  background-color: #ffe925be;
+  color: #333;
   font-size: 150%;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
 }
 
 .FilterControlButtonsReset:hover {
-  background-color: #333333ec;
+  background-color: #FFE925;
   font-size: 190%;
-  border: 2px solid #000;
   transition: background-color 0.1s ease-in-out;
+  border: 2px solid #9DC0E9;
 }
 
 .FilterSelect {
-  padding-top: 0.5%;
   width: 35%;
-  height: 70%;
+  height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
+}
+
+.FilterRow1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.FilterRow2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  z-index: 9;
 }
 
 .FilterSelectItem {
   width: 40%;
-  height: 98%;
+  height: 35vh;
   display: flex;
   flex-direction: column;
   gap: 1%;
   align-items: center;
   justify-content: space-around;
-  border: 2px dashed #0000001c;
+  border: 2px dashed #1bb7e6;
   border-radius: 1vw;
   cursor: pointer;
 }
 
 .FilterSelectedItem {
   width: 40%;
-  height: 98%;
+  height: 35vh;
   display: flex;
   flex-direction: column;
   gap: 1%;
   align-items: center;
   justify-content: space-around;
-  border: 2px solid #1bb7e6;
+  border: 2px solid #1378EE; 
   border-radius: 1vw;
   cursor: pointer;
-
 }
 
 .FilterSelectItem:hover {
@@ -282,11 +330,15 @@
 }
 
 .FilterSelectItemR1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 7vw;
   height: 7vw;
   background-color: #0400ff1c;
   border-radius: 150vw;
 }
+
 
 .FilterSelectItemR2 {
   font-size: 150%;
@@ -297,7 +349,6 @@
   font-size: 120%;
 }
 
-/* Home/style.css */
 input[type="date"] {
   padding: 5px;
   margin-top: 10px;
@@ -315,4 +366,195 @@ input[type="range"] {
 span {
   font-size: 14px;
   margin-left: 10px;
+}
+
+
+.Filter-Right {
+  display: flex;
+  flex-direction: column;
+}
+
+
+label {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  background: #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #FFE925;
+  border: 1px solid #1378EE;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #4c8baf;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="range"]:hover {
+  background: #ccc;
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+  background: #3e578e;
+}
+
+input[type="range"]:active::-moz-range-thumb {
+  background: #3e578e;
+}
+
+span {
+  font-size: 14px;
+  color: #555;
+  margin-left: 10px;
+}
+
+.PolyControlRow{
+  width: 100vw;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  gap: 5vw;
+  align-items: center;
+}
+
+.PolyControlButton {
+  background-color: #9DC0E9;
+  border: 1px solid #1378EE;
+  width:5.5vw;
+  height: 5.5vw;
+  border-radius: 0.8vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.PolyControlButton img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit; /* Para manter o arredondamento */
+}
+
+.PolyControlButton:hover{
+  background-color: #00000096;
+  cursor: pointer;
+
+}
+
+  .Align-Center{
+    width: 100vw;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    gap: 6vh;
+  }
+  
+  @media (max-width: 1000px) {
+    .FilterControl{
+      flex-direction: column;
+    }
+
+    .Search-filter {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+
+    .FilterControl{
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .FilterDate{
+      display: flex;
+      justify-content: center;
+      width: 100vw;
+      flex-direction: column;
+    }
+
+    .FilterControlDateRow{
+      display: flex;
+      width: 100vw;
+      flex-direction: column;
+    }
+
+    .FilterControlDateRow input[type="date"] {
+      font-size: 20px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      outline: none;
+      transition: border-color 0.3s ease;
+      width: 50vw;
+    }
+    
+    .FilterControlDateRow input[type="date"]:focus {
+      border-color: #2c80b1;
+    }
+    
+    .FilterControlDateRow input[type="date"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      filter: brightness(0.7);
+    }
+    
+    .DateTitle{
+      display: flex;
+      font-size: 3vw;
+      justify-content: center;
+      font-size: 120%;
+      font-weight: 600;
+    }
+
+    .DateInput{
+      display: flex;
+      font-size: 3vw;
+      justify-content: center;
+    }
+    .FilterSelect{
+      width: 90vw;
+      height: 100vw;
+    }
+
+    .FilterSelectItemR1{
+      width: 20vw;
+      height: 20vw;
+    }
+    .PolyControlRow{
+      width: 100%;
+      height: 100%;
+    }
+    .PolyControlButton{
+      width: 20vw;
+      height: 20vw;
+      border-radius: 3vw;
+    }
+
 }

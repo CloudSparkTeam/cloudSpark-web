@@ -5,6 +5,7 @@ import logoMini from "../../Images/miniLOGO.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import Navbar from '../../Componets/Navbar/App';
 
 export default function Login() {
 
@@ -47,6 +48,8 @@ export default function Login() {
 
     return (
         <>
+            <Navbar />
+
             <div className="imagem-fundo">
                 {/* <img src={mapaBack} className="imagemfundo"/> */}
                 <div className="container2">

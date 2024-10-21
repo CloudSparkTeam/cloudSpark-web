@@ -1,0 +1,97 @@
+.HomeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza o conteúdo horizontalmente */
+  justify-content: flex-start; /* Alinha o conteúdo ao topo */
+  height: 85vh; /* Ajusta a altura para preencher a tela */
+  padding: 20px;
+  
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Faz os inputs e botões ocuparem a largura total */
+  width: 50%; /* Aumenta a largura do cartão para 90% da largura da tela */
+  max-width: 50%; /* Limita a largura máxima do cartão para 600px */
+  padding: 30px; /* Preenchimento interno do cartão */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Adiciona sombra ao cartão */
+}
+
+.title {
+  text-align: center; /* Centraliza o título */
+  font-size: 24px; /* Tamanho da fonte do título */
+  margin-bottom: 20px; /* Espaço abaixo do título */
+  color: #333; /* Cor do texto do título */
+}
+
+.input {
+  width: 100%; /* Faz com que os inputs ocupem toda a largura do cartão */
+  margin: 10px 0; /* Espaçamento entre os inputs */
+  padding: 12px; /* Preenchimento interno dos inputs */
+  border: 1px solid #ccc; /* Borda dos inputs */
+  border-radius: 4px; /* Bordas arredondadas dos inputs */
+  font-size: 16px; /* Aumenta o tamanho da fonte para os inputs */
+  transition: border-color 0.3s; /* Efeito de transição para mudança de cor da borda */
+}
+
+.input:focus {
+  border-color: #007BFF; /* Muda a cor da borda ao focar */
+  outline: none; /* Remove o contorno padrão ao focar */
+}
+
+.button {
+  margin-top: 10px; /* Espaçamento acima do botão */
+  padding: 12px 20px; /* Preenchimento interno do botão */
+  background-color: #007BFF; /* Cor de fundo do botão */
+  color: white; /* Cor do texto do botão */
+  border: none; /* Remove a borda padrão */
+  border-radius: 4px; /* Bordas arredondadas do botão */
+  cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+  font-size: 16px; /* Aumenta o tamanho da fonte do botão */
+  transition: background-color 0.3s; /* Efeito de transição para mudança de cor */
+}
+
+.button:hover {
+  background-color: #0056b3; /* Cor do botão ao passar o mouse */
+}
+
+.linkText {
+  margin-top: 10px; /* Espaçamento acima do link */
+  text-align: center; /* Centraliza o texto */
+  color: #007BFF; /* Cor do texto do link */
+  background: none; /* Remove o fundo do botão */
+  border: none; /* Remove a borda padrão */
+  cursor: pointer; /* Muda o cursor ao passar sobre o link */
+  font-size: 14px; /* Tamanho da fonte do link */
+}
+
+.linkText:hover {
+  text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+.semcadastro {
+  margin-top: 10px; /* Espaçamento acima do botão */
+  padding: 12px 20px; /* Preenchimento interno do botão */
+  background-color: #3d3a3a28; /* Cor de fundo do botão */
+  color: rgb(156, 18, 18); /* Cor do texto do botão */
+  border: none; /* Remove a borda padrão */
+  border-radius: 4px; /* Bordas arredondadas do botão */
+  cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+  font-size: 16px; /* Aumenta o tamanho da fonte do botão */
+  transition: background-color 0.3s; /* Efeito de transição para mudança de cor */
+}
+
+.semcadastro:hover {
+  background-color: #7a7d8127; /* Cor do botão ao passar o mouse */
+}
+
+.logo-container {
+  text-align: center; /* Centraliza o logo horizontalmente */
+  margin-top: 20px; /* Espaço acima do logo */
+}
+
+.logo {
+  max-width: 100%; /* Ajusta a largura do logo */
+  height: auto; /* Mantém a proporção do logo */
+}

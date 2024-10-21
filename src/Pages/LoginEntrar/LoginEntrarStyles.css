@@ -1,0 +1,72 @@
+.container {
+    background-image: url("../../Images/mapaOpacoRascunho.png");
+    background-size: cover;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.bloco-principal {
+    height: 500px;
+    width: 400px;
+    background-color: #0955AE;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.bloco-inputs {
+    height: 235px;
+    width: 301px;
+    background-color: #FFE607;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    top: 20px;
+}
+
+.botao-entrar {
+    height: 50px;
+    width: 120px;
+    border-radius: 15px;
+    color: #403E3E;
+    background-color: #FFE607;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.3 ease;
+    position: relative;
+    top: 35px;
+
+}
+
+.botao-entrar:hover {
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+}
+
+.inputs-entrar {
+    height: 50px;
+    width: 264px;
+    border-radius: 15px;
+    color: black;
+    font-size: 24;              /*nao esta sendo aplicado*/
+    font-weight: medium;    /*nao esta sendo aplicado*/
+    
+}
+
+.texto-login {
+    margin-top: -70px;
+}
+
+.imagem {
+    margin-top: -30px;
+}

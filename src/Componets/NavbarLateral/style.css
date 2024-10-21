@@ -1,0 +1,304 @@
+.NavbarRowMini{
+  padding: 1.5vw;
+  background-color: #9DC0E999;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 50%;
+  height: 10Vh;
+  color: #ffffffe9;
+}
+
+.RowLeftMini{
+  width: 50vw;
+  display: flex;
+  align-items: center;
+}
+
+.RowRightMini{
+  width: 50vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.IconMini {
+  color: #333;
+  align-items: center;
+  justify-content: center;
+  width:12vw;
+  height: 12vw;
+  background-color: #333;
+  border-radius: 100%;
+}
+
+.TitleMini {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+.TabsMini{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+  width: 30%;
+  gap: 15%;
+  color: #333;
+  font-weight: 400;
+}
+
+.TabsMini div:hover {
+  background-color: #0002;
+  border-radius: 15%;
+  height: 90%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.TabMini{
+  height: 100%;
+  width: 33%;
+  padding-right: 1%;
+  padding-left: 1%;
+}
+
+.TabsMini div {
+  height: 98%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 20%;
+}
+
+.InputContainerMini{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 15%;
+}
+
+.styled-inputMini {
+  width: 15%; 
+  height: 250%;                  /* Largura total do contêiner */
+  padding: 7px;                 /* Espaçamento interno */
+  border: 2px solid #bbb9;        /* Borda cinza clara */        
+  font-size: 14px;               /* Tamanho da fonte */
+  transition: background-color 0.3s ease-in-out;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 3vh;
+  text-align: center;
+  font-size: 6vh;
+}
+
+.styled-inputMini:focus {
+  border-color: #3339;        /* Muda a cor da borda ao focar */
+  outline: none; 
+  width: 50%;               /* Remove o contorno padrão */
+  text-align: left;
+  font-size: 3vh;
+
+}
+
+.styled-inputMini::placeholder {
+  color: #333;                  /* Cor do placeholder */
+  opacity: 1;                   /* Garantir que o placeholder seja totalmente opaco */
+}
+
+.logoMini {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ajusta a imagem dentro do contêiner sem distorção */
+}
+
+
+
+.IconMenu {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  width:10vw;
+  height: 10vw;
+  transition: background-color 0.2s ease-in-out;
+  z-index: 10;
+  top:2%;
+}
+
+/* .IconMenu:hover {
+  align-items: center;
+  justify-content: center;
+  width:20vw;
+  height: 20vw;
+  background-color: #333;
+  border-radius: 10%;
+} */
+
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0; /* Começa com a largura em 0 */
+  height: 100%;
+  background-color: #9dc1e9d5; 
+  display: flex;
+  align-items: center;
+  z-index: 9; 
+  border-top-right-radius: 10%;
+  border-bottom-right-radius: 10%;
+  overflow: hidden;
+  transition: width ease-in-out; /* Animação da largura */
+}
+
+.Overlay.active {
+  width: 90%; /* Expande para 90% quando ativo */
+}
+
+.MenuContent {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  justify-content: start;
+  gap: 7%;
+}
+
+.Menu-Item {
+  margin-top: 10%;
+  width: auto;
+  padding-right: 10%;
+  padding-left: 5%;
+  height: 15%;
+  background-color: rgba(255, 255, 255, 1);
+  border-top-right-radius: 2.5vh;
+  border-bottom-right-radius: 2.5vh;
+  font-size: 6vh;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  color: #333;
+}
+
+.Menu-Item:hover {
+  background-color: #dcdcdc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Container para a área de busca */
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Box que contém o input e o botão */
+.search-box {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  transition: width 0.5s ease-in-out; /* Animação de transição suave */
+  width: 10vh; /* Largura inicial quando só o botão é mostrado */
+  overflow: hidden; /* Garante que o input fique escondido na transição */
+  position: relative; /* Adiciona posição relativa para gerenciar o z-index */
+  height: 10vh;
+}
+
+.search-box.active {
+  width: 60vw; /* Largura expandida quando o input é exibido */
+  height: 10vh;
+}
+
+/* Estilização do botão de busca */
+.search-button {
+  width: 10vh;
+  height: 10vh;
+  background-color: rgba(255, 255, 255, 0.466);
+  border: none;
+  color: white;
+  font-size: 5vh; /* Tamanho da lupa ajustado para não ocupar todo o espaço */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 2; /* Mantém o botão acima do input */
+  position: absolute; /* Para que o botão fique sobre o input */
+  right: 0; /* Mantém o botão alinhado à direita */
+  border-top-right-radius: 50% ;
+  border-bottom-right-radius: 50%;
+}
+
+.search-buttonNav:hover {
+  background-color: #dcdcdc;
+}
+
+/* Estilização do input de busca */
+.search-input {
+  padding: 8px 12px;
+  font-size: 3.5vh;
+  border: 2px solid #dcdcdc;
+  width: 100%; /* Faz o input ocupar todo o espaço disponível */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 1; /* Mantém o input abaixo do botão */
+  height: 15vh;
+  margin-right: 9.3vw;
+}
+
+/* Exibir input quando o estado está ativo */
+.search-box.active .search-input {
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+
+@media (max-width: 500px) {
+  .IconMenu {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width:17vw;
+    height: 17vw;
+    transition: background-color 0.2s ease-in-out;
+    z-index: 10;
+    top:2%;
+  }
+
+  .IconMini {
+    color: #333;
+    align-items: center;
+    justify-content: center;
+    width:20vw;
+    height: 20vw;
+    background-color: #333;
+    border-radius: 100%;
+  }
+
+}
+
+

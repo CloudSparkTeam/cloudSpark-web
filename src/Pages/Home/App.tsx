@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './style.css'; // CSS global
 import Carrosel from "../../Componets/Carrosel/Carrosel";
-import foto1 from "../../Images/foto1.png";
-import foto2 from "../../Images/foto2.png";
-import foto3 from "../../Images/foto3.png";
 import Nuvem from "../../Images/Icons/cloud-svgrepo-com.svg";
 import NuvemS from "../../Images/Icons/cloudShadow-svgrepo-com.svg";
 import PolyShow from "../../Images/Icons/polygonShow.svg";
@@ -18,7 +15,6 @@ const App = () => {
   const [CriteriaC, setCriteriaC] = useState(false);
   const [CriteriaS, setCriteriaS] = useState(false);
   const [ShowPoly, setShowPoly] = useState(true);
-  const fotos = [{ url: foto1, alt: "f1" }, { url: foto2, alt: "2" }, { url: foto3, alt: "3" }];
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
 
   const [startDate, setStartDate] = useState<string>('');
@@ -132,42 +128,6 @@ const App = () => {
           <Carrosel/>
         </div>
       </div>
-      {/*
-      <div className='FeatureContainer'>
-        <div className='Feature'>
-          <div className='FeatureC1'></div>
-          <div className='FeatureC2'>
-            <div className='FeatureC2Title'>Cloud Removal Feature</div>
-            <div className='FeatureC2Desc'>
-              Choose your desired cloud removal option
-            </div>
-            <div className='FeatureC2Button'>Select</div>
-          </div>
-        </div>
-      </div>
-
-
-      <div className='FeatureEx'>
-        <div className='FeatureExContainer'>
-          <div className='FeatureItem'>
-            <div className='FeatureExItemR1'></div>
-            <div className='FeatureExItemR2'>Remove Clouds</div>
-            <div className='FeatureExItemR3'>Remove clouds from the image</div>
-          </div>
-          <div className='FeatureItem'>
-            <div className='FeatureExItemR1'></div>
-            <div className='FeatureExItemR2'>Remove Clouds</div>
-            <div className='FeatureExItemR3'>Remove clouds from the image</div>
-          </div>
-          <div className='FeatureItem'>
-            <div className='FeatureExItemR1'></div>
-            <div className='FeatureExItemR2'>Remove Clouds</div>
-            <div className='FeatureExItemR3'>Remove clouds from the image</div>
-          </div>
-        </div>
-      </div>
-*/}
-
       <div className='LocationContainer'>
         <div className={'Location'}>
           <MapSelector sendPolygonToBack={handleRegionSelect} />

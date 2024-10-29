@@ -1,45 +1,30 @@
+// Components/MapSelector.tsx
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, LoadScript, Polygon, Marker } from '@react-google-maps/api';
-
-// Defina a interface para a região do mapa
-interface MapSelectorInterface {
-    latitude: number;
-    longitude: number;
-    latitudeDelta: number;
-    longitudeDelta: number;
-}
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import PolygonComponent from './Polygon';
+import MapControls from './MapControls';
+import CoordinatesDisplay from './CoordinatesDisplay';
 
 interface MapSelectorProps {
     sendPolygonToBack: (coords: { norte: number; sul: number; leste: number; oeste: number }) => void;
 }
 
 function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element {
-    const [regiao, setRegiao] = useState<MapSelectorInterface | null>(null);
     const [polygonCoords, setPolygonCoords] = useState<google.maps.LatLngLiteral[]>([]);
+    const [isPolygonVisible, setIsPolygonVisible] = useState(false);
     const [norte, setNorte] = useState<number | null>(null);
     const [sul, setSul] = useState<number | null>(null);
     const [leste, setLeste] = useState<number | null>(null);
     const [oeste, setOeste] = useState<number | null>(null);
 
-    // Defina a posição padrão para o centro do mapa
-    const defaultCenter = { lat: -23.5505, lng: -46.6333 }; // São Paulo, por exemplo
-
+    const defaultCenter = { lat: -23.5505, lng: -46.6333 }; // São Paulo 
     const [mapCenter, setMapCenter] = useState<google.maps.LatLngLiteral>(defaultCenter);
-    const [isPolygonVisible, setIsPolygonVisible] = useState(false);
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition((position) => {
-            const center = {
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-                latitudeDelta: 0.1,
-                longitudeDelta: 0.1,
-            };
-
-            setRegiao(center);
-            setMapCenter({ lat: center.latitude, lng: center.longitude });
-        },
-            () => { console.log("Erro ao obter localização"); });
+        navigator.geolocation.getCurrentPosition(
+            (position) => setMapCenter({ lat: position.coords.latitude, lng: position.coords.longitude }),
+            () => console.log("Erro ao obter localização")
+        );
     }, []);
 
     useEffect(() => {
@@ -55,20 +40,10 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
         }
     }, [norte, sul, leste, oeste]);
 
-    // const handleMapClick = (e: google.maps.MapMouseEvent) => {
-    //     const latLng = e.latLng?.toJSON();
-    //     if (latLng && polygonCoords.length < 4) {
-    //         setPolygonCoords([...polygonCoords, latLng]);
-    //     } else if (polygonCoords.length === 4) {
-    //         console.log('Você já selecionou 4 pontos.');
-    //     }
-    // };
-
     const handlePolygonClick = (event: google.maps.MapMouseEvent) => {
         const latLng = event.latLng?.toJSON();
         if (latLng) {
-            const newCoords = [...polygonCoords, latLng];
-            setPolygonCoords(newCoords);
+            setPolygonCoords((prevCoords) => [...prevCoords, latLng]);
         }
     };
 
@@ -84,28 +59,21 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
         const latitudes = coords.map(coord => coord.lat);
         const longitudes = coords.map(coord => coord.lng);
 
-        const norte = Math.max(...latitudes);
-        const sul = Math.min(...latitudes);
-        const leste = Math.max(...longitudes);
-        const oeste = Math.min(...longitudes);
-
-        setNorte(norte);
-        setSul(sul);
-        setLeste(leste);
-        setOeste(oeste);
-
-        console.log(`Norte: ${norte}, Sul: ${sul}, Leste: ${leste}, Oeste: ${oeste}`);
+        setNorte(Math.max(...latitudes));
+        setSul(Math.min(...latitudes));
+        setLeste(Math.max(...longitudes));
+        setOeste(Math.min(...longitudes));
     };
 
     const handleMarkerDragEnd = (index: number, e: google.maps.MapMouseEvent) => {
         const newCoordinate = e.latLng?.toJSON();
         if (newCoordinate) {
-            const updatedCoords = [...polygonCoords];
-            updatedCoords[index] = newCoordinate;
-            setPolygonCoords(updatedCoords);
-
-            calcularExtremos(updatedCoords);
-            console.log(`Marcador ${index + 1} atualizado para:`, newCoordinate);
+            setPolygonCoords((prevCoords) => {
+                const updatedCoords = [...prevCoords];
+                updatedCoords[index] = newCoordinate;
+                calcularExtremos(updatedCoords);
+                return updatedCoords;
+            });
         }
     };
 
@@ -114,53 +82,31 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
             <div style={styles.container}>
                 <GoogleMap
                     mapContainerStyle={{ width: '100%', height: '100%' }}
-                    center={mapCenter ?? undefined}
-                    zoom={regiao ? 10 : 2}
+                    center={mapCenter}
+                    zoom={10}
                     onClick={handlePolygonClick}
                 >
-                    {isPolygonVisible && (
-                        <>
-                            <Polygon
-                                paths={polygonCoords}
-                                options={{ fillColor: "blue", fillOpacity: 0.4, strokeColor: "blue", strokeOpacity: 1 }}
-                            />
-                            {polygonCoords.map((coord, index) => (
-                                <Marker key={index} position={coord} />
-                            ))}
-                        </>
-                    )}
-
-                    {polygonCoords.map((coord, index) => (
-                        <Marker
-                            key={index}
-                            position={coord}
-                            draggable
-                            onDragEnd={(e) => handleMarkerDragEnd(index, e)}
-                        />
-                    ))}
+                    <PolygonComponent
+                        polygonCoords={polygonCoords}
+                        isPolygonVisible={isPolygonVisible}
+                        onPolygonClick={handlePolygonClick}
+                        onMarkerDragEnd={handleMarkerDragEnd}
+                    />
                 </GoogleMap>
 
-                {norte && sul && leste && oeste && (
-                    <div style={styles.coordContainer}>
-                        <p>Norte: {norte.toFixed(6)}</p>
-                        <p>Sul: {sul.toFixed(6)}</p>
-                        <p>Leste: {leste.toFixed(6)}</p>
-                        <p>Oeste: {oeste.toFixed(6)}</p>
-                    </div>
-                )}
+                <CoordinatesDisplay norte={norte} sul={sul} leste={leste} oeste={oeste} />
             </div>
 
-            <div className='MapSelectorControls'>
-                <button onClick={togglePolygonVisibility}>
-                    {isPolygonVisible ? "Hide Polygon" : "Mostrar Polígono"}
-                </button>
-                <button onClick={handleClearPolygon}>Limpar Polígono</button>
-            </div>
+            <MapControls
+                isPolygonVisible={isPolygonVisible}
+                onTogglePolygonVisibility={togglePolygonVisibility}
+                onClearPolygon={handleClearPolygon}
+            />
         </LoadScript>
     );
 }
 
-const styles: { [key: string]: React.CSSProperties } = {
+const styles = {
     container: {
         display: 'flex',
         alignItems: 'center',
@@ -168,14 +114,7 @@ const styles: { [key: string]: React.CSSProperties } = {
         width: '100%',
         height: '100%',
         position: 'relative'
-    },
-    coordContainer: {
-        position: 'absolute',
-        bottom: 20,
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        padding: 10,
-        borderRadius: 10,
-    }
+    } as React.CSSProperties,
 };
 
 export default MapSelector;

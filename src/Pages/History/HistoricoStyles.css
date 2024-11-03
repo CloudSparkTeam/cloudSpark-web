@@ -1,0 +1,28 @@
+
+.historico-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.historico-titulo {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.historico-tabela {
+  width: 80%;
+  border-collapse: collapse;
+}
+
+.historico-tabela th, .historico-tabela td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.historico-tabela th {
+  background-color: #f4f4f4;
+}

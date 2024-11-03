@@ -25,6 +25,7 @@ const App = () => {
           <div className='Tab' onClick={() => navigate('/login')}>Login</div>
           <div className='Tab' onClick={() => navigate('/perfil')}>Perfil</div>
           <div className='Tab' onClick={() => navigate('/cadastrousuario')}>Cadastrar</div>
+          <div className='Tab' onClick={() => navigate('/historico')}>Histórico</div>
         </div>
 
       </div>

@@ -8,6 +8,7 @@ import LoginEntrar from './Pages/LoginEntrar/LoginEntrar';
 import Login from './Pages/Login/Login';
 import Perfil from './Pages/Profile/Perfil';
 import CadastroUsuario from './Pages/CadastroUsuario/CadastroUsuario';
+import History from './Pages/History/Historico'
 
 const router = createBrowserRouter([{
   path: "/login",
@@ -24,6 +25,10 @@ const router = createBrowserRouter([{
 {
   path: "/perfil",
   element: <Perfil />
+},
+{
+  path: "/historico",
+  element: <History />
 },
 {
   path: "/cadastrousuario",

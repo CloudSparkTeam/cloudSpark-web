@@ -1,0 +1,179 @@
+/* Container principal do carrossel */
+.carousel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Container das imagens, com overflow escondido para deslizamento */
+.slider {
+  display: flex;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+/* Estilos das imagens */
+.img-slider-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  transition: transform 300ms ease-in-out;
+}
+
+/* Botão para a navegação à direita */
+.btnRight {
+  all: unset;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 5vw;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: background-color 100ms ease-in-out;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.btnRight:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Botão para a navegação à esquerda */
+.btnLeft {
+  all: unset;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 5vw;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: background-color 100ms ease-in-out;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.btnLeft:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Container dos pontos de navegação */
+.dots {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+}
+
+/* Estilo para cada ponto de navegação */
+.itemBtn {
+  width: 1rem;
+  height: 1rem;
+  margin: 0 0.3rem;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  background-color: transparent;
+  transition: transform 200ms ease-in-out;
+}
+
+.itemBtn:hover {
+  transform: scale(1.2);
+}
+
+/* Ponto ativo de navegação */
+.itemBtnSelected {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+/* Overlay do modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Conteúdo do modal */
+.modal-content {
+  position: relative;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Imagem do modal */
+.modal-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+}
+
+/* Botões de navegação do modal */
+.modal-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.modal-btn:first-of-type {
+  left: 10px;
+}
+
+.modal-btn:last-of-type {
+  right: 10px;
+}
+
+/* Botão de fechar modal */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+/* Botão para ver os detalhes da imagem no modal */
+.modal-details-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.modal-details-btn {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.modal-details-btn:hover {
+  background-color: rgba(200, 200, 200, 0.8);
+}

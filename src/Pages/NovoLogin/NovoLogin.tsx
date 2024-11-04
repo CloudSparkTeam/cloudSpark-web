@@ -15,9 +15,12 @@ export default function Login() {
     const [dataNascimento, setDataNascimento] = useState(""); // Novo estado para data de nascimento
 
     const [mostrarCadastro, setMostrarCadastro] = useState(false);
+    const handleCadastroClick = () => setMostrarCadastro(true);
+    const handleLoginClick = () => setMostrarCadastro(false);
 
     const handleToggle = () => {
         setMostrarCadastro(prev => !prev);
+        console.log(mostrarCadastro)
     };
 
     const navigate = useNavigate();
@@ -124,7 +127,7 @@ export default function Login() {
 
                         <button className="botao-cadastrar" onClick={handleCadastro}>Cadastrar</button>
                     </div>
-                    <div className="clique-esquerdo">
+                    <div className={`clique-esquerdo ${mostrarCadastro ? 'ativo' : ''}`} id={"clique-esquerdo"}>
                         <h2>Bem vindo de volta!</h2>
                         <div className="texto2-cliqueesquerdo">
                             <h3>Entre na sua conta para poder acessar seu histórico de imagens dentre outras
@@ -134,18 +137,19 @@ export default function Login() {
                         <button onClick={handleToggle}>
                             Entrar
                         </button>
+                        </div>
                     </div>
-                    </div>
-                    <div className="clique-direito">
-                    <h2>Bem vindo!</h2>
-                    <div className="texto2-cliquedireito">
-                        <h3>A melhor solução para tratamento de nuvens!</h3>
-                    </div>
-                    <div className="botaodireitocadastrar">
-                        <button onClick={handleToggle}>
-                            Cadastrar
-                        </button>
-                    </div>
+
+                    <div className={`clique-direito ${!mostrarCadastro ? 'ativo' : ''}`}>
+                        <h2>Bem vindo!</h2>
+                        <div className="texto2-cliquedireito">
+                            <h3>A melhor solução para tratamento de nuvens!</h3>
+                        </div>
+                        <div className="botaodireitocadastrar">
+                            <button onClick={handleToggle}>
+                                Cadastrar
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -20,7 +20,7 @@
     height: 480px; /*nao esta sendo aplicado*/
     /* width: 100vw; */
     display: grid;
-    grid-template-columns: 362px 514px;
+    grid-template-columns: 372px 504px;
     justify-content: center;
     align-self: center;
     /* align-items: center;
@@ -92,6 +92,11 @@
     margin-top: 40px;
 }
 
+.posicionarbcadastrar {
+    margin-bottom: 30px;
+
+}
+
 .botao-cadastrar:hover {
     box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
 }
@@ -99,11 +104,12 @@
 .input-cadastro {
     height: 50px;
     width: 400px;
-    border-radius: 15px;
+    border-radius: 10px;
     color: black;
     font-size: 24;              /*nao esta sendo aplicado*/
     font-weight: medium;    /*nao esta sendo aplicado*/
     margin-top: 25px;
+    background-color: #D9D9D9;;
 }
 
 
@@ -117,7 +123,11 @@
 }
 
 .palavra-logo {
-    margin-top: 20px;
+    margin-top: -10px;
+}
+
+#palavra-logo-esquerdo {
+    margin-top: 10px;
 }
 
 .texto-logo {
@@ -140,6 +150,8 @@
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 100px;
     opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .clique-direito {
@@ -154,12 +166,123 @@
     border-bottom-left-radius: 100px;
     border-bottom-right-radius: 20px;
     opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .clique-esquerdo.ativo{
     opacity: 1;
+    pointer-events: auto;
 }
 
 .clique-direito.ativo {
     opacity: 1;
+    pointer-events: auto;
+}
+
+.texto2-cliquedireito {
+    text-align: center;
+    justify-content: center;
+    font-size: 18px;
+    width: 400px;
+    margin-left: 54px;
+}
+
+.texto2-cliquedireito h3 {
+    font-weight: 500;
+}
+
+.titulo-cliquedireito {
+    text-align: center;
+    font-size: 28px;
+    margin-top: 140px;
+    
+}
+
+.texto2-cliqueesquerdo {
+    text-align: center;
+    font-size: 18px;
+}
+
+.texto2-cliqueesquerdo h3 {
+    font-weight: 500;
+}
+
+.titulo-cliqueesquerdo {
+    text-align: center;
+    font-size: 28px;
+    margin-top: 140px;
+}
+
+.botaodireitocadastrar button {
+    height: 55px;
+    width: 170px;
+    border-radius: 20px;
+    color: #403E3E;
+    background-color: #FFE607;
+    font-size: 20px;
+    font-weight: bold;
+    border-color: #FDFDFD;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.3 ease;
+}
+.botaodireitocadastrar {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.botaoesquerdoentrar button {
+    height: 55px;
+    width: 170px;
+    border-radius: 20px;
+    color: #403E3E;
+    background-color: #FFE607;
+    font-size: 20px;
+    font-weight: bold;
+    border-color: #FDFDFD;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.3 ease;
+    
+}
+
+.botaoesquerdoentrar {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 75px;
+}
+
+.botaoconvidado{
+    padding: 20px;
+}
+
+#bconvidado {
+    font-size: 14px;
+    width: 180px;
+}
+
+.bloco-inputs-novo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 15px;
+    
+}
+
+.inputs-entrar-novo {
+    height: 50px;
+    width: 326px;
+    border-radius: 10px;
+    background-color: #D9D9D9;
+    margin-top: 25px;
+}
+
+.texto-bemvindo {
+    margin-top: -40px;
+}
+
+.posicaologo{
+    margin-top: -20px;
 }

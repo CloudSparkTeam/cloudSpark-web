@@ -13,8 +13,6 @@ const FiltroDesktop = () => {
   const [cloudPercentage, setCloudPercentage] = useState<number>(0);
   const [shadowPercentage, setShadowPercentage] = useState<number>(0);
 
-
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,7 +40,7 @@ const FiltroDesktop = () => {
 
     let latitudes: number[] = [];
     let longitudes: number[] = [];
-    let coordsArray: google.maps.LatLngLiteral[]=[];
+    let coordsArray: google.maps.LatLngLiteral[] = [];
 
     const storedCoords = localStorage.getItem("Coordenadas");
 
@@ -112,6 +110,7 @@ const FiltroDesktop = () => {
                 <label htmlFor="start-date" style={{ fontSize: 25 }}>Data de Inicio:</label>
                 <input
                   type="date"
+                  placeholder="dd/mm/aaaa"
                   id="start-date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}

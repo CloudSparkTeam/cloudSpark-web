@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './style.css'; // CSS global
 import Carrosel from "../../Componets/Carrosel/Carrosel";
-import PolyShow from "../../Images/Icons/polygonShow.svg";
-import PolyHide from "../../Images/Icons/polygonHide.svg";
-import PolyErase from "../../Images/Icons/polygonEraser.svg"
 import MapSelector from '../../Componets/MapSelector/MapSelector';
 import { useNavigate } from "react-router-dom";
 import FiltroDesktop from '../../Componets/Home/Filtro/Desktop/FiltroDesktop';
@@ -11,11 +8,10 @@ import FiltroMobile from '../../Componets/Home/Filtro/Mobile/FiltroMobile';
 
 
 const App = () => {
-  const [ShowPoly, setShowPoly] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
 
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const token = localStorage.getItem("Token"); // Pega o token do localStorage
 
@@ -27,13 +23,11 @@ const App = () => {
 
 
 
-  const PolySwitch = () =>{
-    setShowPoly(!ShowPoly)
-  }
 
- 
+
+
   const handleRegionSelect = (coords: { norte: number; sul: number; leste: number; oeste: number }) => {
-    
+
     const coordsArray: google.maps.LatLngLiteral[] = [
       { lat: coords.norte, lng: coords.leste }, // Canto superior direito
       { lat: coords.sul, lng: coords.leste },   // Canto inferior direito
@@ -59,9 +53,10 @@ const App = () => {
     <div className='HomeContainer'>
       <div className='CarroselContainer'>
         <div className='Carrosel'>
-          <Carrosel/>
+          <Carrosel />
         </div>
       </div>
+
       {/*
       <div className='FeatureContainer'>
         <div className='Feature'>
@@ -98,34 +93,17 @@ const App = () => {
       </div>
 */}
 
-      <div className='LocationContainer'>
-        <div className={'Location'}>
-          <MapSelector sendPolygonToBack={handleRegionSelect} />
-        </div>
-      </div>
 
-
-      <div className='PolyControlRow'>
-        <div className='PolyControlButton'>
-          
-          <img src={PolyErase} alt="Nuvem"/>
-        </div>
-
-        <div className='PolyControlButton' onClick={PolySwitch}>
-          {ShowPoly?(<img src={PolyShow} alt="Nuvem"  />):(<img src={PolyHide} alt="Nuvem"/>)}    
-        </div>
-      </div>
+      <MapSelector sendPolygonToBack={handleRegionSelect} />
 
 
       {isMobile ? (
-        <FiltroMobile/>
+        <FiltroMobile />
       ) : (
-        <FiltroDesktop/>
+        <FiltroDesktop />
       )}
 
 
-
-      {/* <ImagemTratada /> */}
     </div>
   );
 };

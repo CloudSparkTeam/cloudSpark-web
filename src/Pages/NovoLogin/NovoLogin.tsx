@@ -46,7 +46,8 @@ export default function Login() {
             console.log(objetoUserParaCadastrar)
             const response = await axios.post(urlLoginCadastro, objetoUserParaCadastrar);
 
-            if (response.status === 201) { // Verifica se há um token   
+            if (response.status === 201) { // Verifica se há um token  
+                window.alert("Cadastrado com sucesso!") 
                 navigate("/login");
             } else {
                 window.alert("Cadastro falhou. Verifique as informações fornecidas.");

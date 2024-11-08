@@ -8,10 +8,11 @@ import LoginEntrar from './Pages/LoginEntrar/LoginEntrar';
 import Login from './Pages/Login/Login';
 import Perfil from './Pages/Profile/Perfil';
 import CadastroUsuario from './Pages/CadastroUsuario/CadastroUsuario';
+import NovoLogin from './Pages/NovoLogin/NovoLogin';
 
 const router = createBrowserRouter([{
   path: "/login",
-  element: <Login />
+  element: <NovoLogin />
 },
 {
   path: "/entrar",

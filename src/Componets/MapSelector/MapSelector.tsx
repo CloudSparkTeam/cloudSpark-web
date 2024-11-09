@@ -20,6 +20,7 @@ interface MapSelectorProps {
 function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element {
     const [regiao, setRegiao] = useState<MapSelectorInterface | null>(null);
     const [polygonCoords, setPolygonCoords] = useState<google.maps.LatLngLiteral[]>([]);
+    const [isPolygonVisible, setIsPolygonVisible] = useState(false);
     const [norte, setNorte] = useState<number | null>(null);
     const [sul, setSul] = useState<number | null>(null);
     const [leste, setLeste] = useState<number | null>(null);
@@ -33,21 +34,12 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
     // Defina a posição padrão para o centro do mapa
     const defaultCenter = { lat: -23.5505, lng: -46.6333 }; // São Paulo, por exemplo
     const [mapCenter, setMapCenter] = useState<google.maps.LatLngLiteral>(defaultCenter);
-    const [isPolygonVisible, setIsPolygonVisible] = useState(false);
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition((position) => {
-            const center = {
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-                latitudeDelta: 0.1,
-                longitudeDelta: 0.1,
-            };
-
-            setRegiao(center);
-            setMapCenter({ lat: center.latitude, lng: center.longitude });
-        },
-            () => { console.log("Erro ao obter localização"); });
+        navigator.geolocation.getCurrentPosition(
+            (position) => setMapCenter({ lat: position.coords.latitude, lng: position.coords.longitude }),
+            () => console.log("Erro ao obter localização")
+        );
     }, []);
 
     useEffect(() => {

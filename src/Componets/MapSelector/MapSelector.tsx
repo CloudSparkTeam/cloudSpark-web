@@ -18,7 +18,7 @@ interface MapSelectorProps {
 }
 
 function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element {
-    const [regiao, setRegiao] = useState<MapSelectorInterface | null>(null);
+    const [regiao] = useState<MapSelectorInterface | null>(null);
     const [polygonCoords, setPolygonCoords] = useState<google.maps.LatLngLiteral[]>([]);
     const [isPolygonVisible, setIsPolygonVisible] = useState(false);
     const [norte, setNorte] = useState<number | null>(null);
@@ -27,6 +27,7 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
     const [oeste, setOeste] = useState<number | null>(null);
     const [ShowPoly, setShowPoly] = useState(true);
     const [isExpanded, setIsExpanded] = useState(false);
+
 
     // Crie uma referência para o contêiner
     const containerRef = useRef<HTMLDivElement>(null);

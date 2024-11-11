@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./style.css"; // CSS global
@@ -9,13 +10,15 @@ import PolyHide from "../../Images/Icons/polygonHide.svg";
 import PolyErase from "../../Images/Icons/polygonEraser.svg";
 
 import MapSelector from "../../Componets/MapSelector/MapSelector";
+
 import { useNavigate } from "react-router-dom";
+import FiltroDesktop from '../../Componets/Home/Filtro/Desktop/FiltroDesktop';
+import FiltroMobile from '../../Componets/Home/Filtro/Mobile/FiltroMobile';
+
 
 const App = () => {
-  const [CriteriaC, setCriteriaC] = useState(false);
-  const [CriteriaS, setCriteriaS] = useState(false);
-  const [ShowPoly, setShowPoly] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
+
 
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
@@ -25,9 +28,11 @@ const App = () => {
     google.maps.LatLngLiteral[]
   >([]);
 
+
   const [id, setId] = useState(0);
 
   const navigate = useNavigate();
+
 
   const ChangeFeature = (botao: string) => {
     if (botao === "Cloud") {
@@ -101,13 +106,14 @@ const App = () => {
     oeste: number;
   }) => {
     // Converta as coordenadas do polígono para um array para o uso interno
+
     const coordsArray: google.maps.LatLngLiteral[] = [
       { lat: coords.norte, lng: coords.leste }, // Canto superior direito
       { lat: coords.sul, lng: coords.leste }, // Canto inferior direito
       { lat: coords.sul, lng: coords.oeste }, // Canto inferior esquerdo
       { lat: coords.norte, lng: coords.oeste }, // Canto superior esquerdo
     ];
-    setPolygonCoords(coordsArray);
+    localStorage.setItem("Coordenadas", JSON.stringify(coordsArray));
   };
 
   const logado = async () => {
@@ -147,6 +153,7 @@ const App = () => {
   }, []);
 
   return (
+
     <div className="HomeContainer">
       <div className="CarroselContainer">
         <div className="Carrosel">
@@ -431,6 +438,7 @@ const App = () => {
       )}
 
       {/* <ImagemTratada /> */}
+
     </div>
   );
 };

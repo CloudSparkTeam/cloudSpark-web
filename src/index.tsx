@@ -5,9 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LoginEntrar from './Pages/LoginEntrar/LoginEntrar';
-import Login from './Pages/Login/Login';
 import Perfil from './Pages/Profile/Perfil';
 import CadastroUsuario from './Pages/CadastroUsuario/CadastroUsuario';
+
+import History from './Pages/History/Historico'
+
+
 import NovoLogin from './Pages/NovoLogin/NovoLogin';
 
 const router = createBrowserRouter([{
@@ -25,6 +28,10 @@ const router = createBrowserRouter([{
 {
   path: "/perfil",
   element: <Perfil />
+},
+{
+  path: "/historico",
+  element: <History />
 },
 {
   path: "/cadastrousuario",

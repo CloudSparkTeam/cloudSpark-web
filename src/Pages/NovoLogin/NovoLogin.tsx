@@ -1,7 +1,6 @@
 import React from "react";
 import "./NovoLogin.css";
 import logoTexto from "../../Images/CloudSpark.png";
-import logoMini from "../../Images/miniLOGO.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -17,8 +16,6 @@ export default function Login() {
     const [senhaEntrar, setSenhaEntrar] = useState("");
 
     const [mostrarCadastro, setMostrarCadastro] = useState(false);
-    const handleCadastroClick = () => setMostrarCadastro(true);
-    const handleLoginClick = () => setMostrarCadastro(false);
 
     const handleToggle = () => {
         setMostrarCadastro(prev => !prev);

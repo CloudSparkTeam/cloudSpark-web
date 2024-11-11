@@ -1,0 +1,78 @@
+
+.historico-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.historico-titulo {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.historico-tabela {
+  width: 80%;
+  border-collapse: collapse;
+  background-color: white; /* Fundo branco para a tabela */
+}
+
+.historico-tabela th, .historico-tabela td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.historico-tabela th {
+  background-color: #f4f4f4;
+}
+
+
+
+/* Intercalar as cores das linhas */
+.historico-tabela tbody tr:nth-child(odd) {
+  background-color: #e0e0e0; /* Cinza claro para linhas ímpares */
+}
+
+.historico-tabela tbody tr:nth-child(even) {
+  background-color: white; /* Branco para linhas pares */
+}
+
+
+.historico-tabela {
+  width: 80%;
+  border-collapse: separate; /* Permitir arredondamento */
+  border-spacing: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px; /* Arredondar bordas da tabela */
+  overflow: hidden;
+}
+
+.historico-tabela th {
+  background-color: #f4f4f4;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.historico-tabela td,
+.historico-tabela th {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+
+.historico-tabela button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.historico-tabela button:hover {
+  background-color: #0056b3;
+}

@@ -50,7 +50,7 @@ export function ImageSlider() {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.get('http://localhost:3002/imagemSatelite/imagens-tratadas');
+            const response = await axios.get('http://localhost:3002/imagemSatelite/imagens-tratadas/1');
             setImages(response.data);
         } catch {
             setError('Erro ao buscar imagens tratadas!');

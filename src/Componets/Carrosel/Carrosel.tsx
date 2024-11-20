@@ -61,6 +61,8 @@ export function ImageSlider() {
 
     useEffect(() => {
         fetchImagensTratadas(); // Busca as imagens quando o componente é montado
+        console.log("esse é o erro", typeof(images))
+        console.log(images)
     }, []);
 
     function resetInterval() {

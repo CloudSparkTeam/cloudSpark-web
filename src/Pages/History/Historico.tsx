@@ -3,6 +3,17 @@ import "./HistoricoStyles.css";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../Componets/Navbar/App";
 import axios from "axios";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
 
 interface Solicitation {
   id: number;
@@ -23,6 +34,12 @@ interface Solicitation {
 export default function Historico() {
   const navigate = useNavigate();
   const [solicitacoes, setSolicitacoes] = useState<Solicitation[]>([]);
+  const [loadingGerarNovamente, setLoadingGerarNovamente] =
+    useState<boolean>(false);
+  const [Id, SetId] = useState("");
+  const [openModal, setOpenModal] = useState(false); // Controla o modal
+  const [imagemUrl, setImagemUrl] = useState<string | null>(null); // URL da imagem
+
 
   const fetchUsuarioLogado = async () => {
     const token = localStorage.getItem("Token");
@@ -41,6 +58,7 @@ export default function Historico() {
       });
 
       if (response.status === 200) {
+        SetId(response.data);
         const { id } = response.data;
         const urlHistorico = `http://localhost:3002/imagemSatelite/listarUsuario/${id}`;
 
@@ -96,15 +114,44 @@ export default function Historico() {
     return nome.slice(underscorePositions[3] + 1);
   }
 
-  const handleGerarNovamente = async (id: number) => {
+  const handleGerarNovamente = async (item: Solicitation) => {
+    setLoadingGerarNovamente(true);
     try {
-      console.log(id)
-      const response = await axios.post(
-        `http://localhost:3002/imagemSatelite/gerarNovamente/${id}`
+      const response = await fetch(
+        `http://localhost:3002/imagemSatelite/gerarNovamente/${item.id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            coordenada_norte: item.coordenada_norte,
+            coordenada_sul: item.coordenada_sul,
+            coordenada_leste: item.coordenada_leste,
+            coordenada_oeste: item.coordenada_oeste,
+            data_imagem: new Date().toISOString(),
+            status: item.status,
+            startDate: item.startDate,
+            endDate: item.endDate,
+            shadowPercentage: item.shadowPercentage,
+            cloudPercentage: item.cloudPercentage,
+            usuario_id: Id,
+          }),
+        }
       );
-      console.log(response);
+      console.log(response)
+      if (response.ok) {
+        const result = await response.json();
+        setImagemUrl(result.imagemUrl); // Assume que o backend retorna uma URL da imagem
+        setOpenModal(true); // Abre o modal
+      } else {
+        alert("Erro ao gerar novamente a imagem.");
+      }
     } catch (error) {
-      console.error("Erro ao gerar novamente: ", error);
+      console.error("Erro ao fazer a requisição:", error);
+      alert("Ocorreu um erro ao tentar gerar novamente.");
+    } finally {
+      setLoadingGerarNovamente(false);
     }
   };
 
@@ -113,47 +160,79 @@ export default function Historico() {
       <Navbar />
       <div className="historico-container">
         <h2 className="historico-titulo">Histórico de Solicitações</h2>
-        <table className="historico-tabela">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Data da Imagem</th>
-              <th>Norte</th>
-              <th>Sul</th>
-              <th>Leste</th>
-              <th>Oeste</th>
-              <th>Status</th>
-              <th>Data de Início</th>
-              <th>Data de Fim</th>
-              <th>Porcentagem de Sombra</th>
-              <th>Porcentagem de Nuvem</th>
-              <th>Ação</th>
-            </tr>
-          </thead>
-          <tbody>
-            {solicitacoes.map((solicitation, index) => (
-              <tr key={index}>
-                <td>{getSubstringAfterFourthUnderscore(solicitation.nome)}</td>
-                <td>{formatDate(solicitation.data_imagem)}</td>
-                <td>{solicitation.coordenada_norte.toFixed(4)}</td>
-                <td>{solicitation.coordenada_sul.toFixed(4)}</td>
-                <td>{solicitation.coordenada_leste.toFixed(4)}</td>
-                <td>{solicitation.coordenada_oeste.toFixed(4)}</td>
-                <td>{solicitation.status}</td>
-                <td>{formatDate(solicitation.startDate)}</td>
-                <td>{formatDate(solicitation.endDate)}</td>
-                <td>{solicitation.shadowPercentage}%</td>
-                <td>{solicitation.cloudPercentage}%</td>
-                <td>
-                  <button onClick={() => handleGerarNovamente(solicitation.id)}>
-                    Gerar Novamente
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <TableContainer component={Paper}>
+          <Table className="historico-tabela">
+            <TableHead>
+              <TableRow>
+                <TableCell>Nome</TableCell>
+                <TableCell>Data da Imagem</TableCell>
+                <TableCell>Norte</TableCell>
+                <TableCell>Sul</TableCell>
+                <TableCell>Leste</TableCell>
+                <TableCell>Oeste</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>Data de Início</TableCell>
+                <TableCell>Data de Fim</TableCell>
+                <TableCell>Porcentagem de Sombra</TableCell>
+                <TableCell>Porcentagem de Nuvem</TableCell>
+                <TableCell>Ação</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {solicitacoes.map((solicitation, index) => (
+                <TableRow key={index}>
+                  <TableCell>
+                    {getSubstringAfterFourthUnderscore(solicitation.nome)}
+                  </TableCell>
+                  <TableCell>{formatDate(solicitation.data_imagem)}</TableCell>
+                  <TableCell>
+                    {solicitation.coordenada_norte.toFixed(4)}
+                  </TableCell>
+                  <TableCell>
+                    {solicitation.coordenada_sul.toFixed(4)}
+                  </TableCell>
+                  <TableCell>
+                    {solicitation.coordenada_leste.toFixed(4)}
+                  </TableCell>
+                  <TableCell>
+                    {solicitation.coordenada_oeste.toFixed(4)}
+                  </TableCell>
+                  <TableCell>{solicitation.status}</TableCell>
+                  <TableCell>{formatDate(solicitation.startDate)}</TableCell>
+                  <TableCell>{formatDate(solicitation.endDate)}</TableCell>
+                  <TableCell>{solicitation.shadowPercentage}%</TableCell>
+                  <TableCell>{solicitation.cloudPercentage}%</TableCell>
+                  <TableCell>
+                    {loadingGerarNovamente ? (
+                      <span>Carregando...</span>
+                    ) : (
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => handleGerarNovamente(solicitation)}
+                      >
+                        Gerar Novamente
+                      </Button>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
+      <Dialog open={openModal} onClose={() => setOpenModal(false)}>
+        <DialogContent>
+          {imagemUrl ? (
+            <img src={imagemUrl} alt="Imagem Satélite" style={{ width: "100%" }} />
+          ) : (
+            <p>Carregando imagem...</p>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenModal(false)}>Fechar</Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }

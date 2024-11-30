@@ -1,0 +1,41 @@
+.centralizacao-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-principal-detalhes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100%; */
+    border-radius: 25px;
+    width: 800px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: aqua;
+    margin-top: 150px;
+}
+
+
+.container-do-slider-detalhes{
+    height: 400px;
+    width: 350px;
+}
+
+.container-do-texto{
+    height: 400px;
+    width: 350px;
+    background-color: blue;
+}
+
+.botaovoltar3{
+    right: 100%;
+    top: 0%;
+
+}
+
+.botaovoltar4{
+    height: 30px;
+    width: 80px;
+}

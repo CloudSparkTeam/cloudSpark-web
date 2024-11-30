@@ -1,0 +1,61 @@
+.detalhes-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Tela inteira */
+    background-color: #f5f5f5;
+  }
+  
+  /* Container fixo com dimensões */
+  .detalhes-container {
+    display: flex;
+    width: 800px;
+    height: 600px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    margin-left: 280px;
+  }
+  
+  /* Estilo do carrossel */
+  .carousel-container {
+    flex: 1;
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Imagem do carrossel */
+  .image-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .carousel-image {
+    
+    border-radius: 8px;
+    width: 200px;
+    height: 200px;
+  }
+  
+  /* Estilo do texto */
+  .texto-container {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+  }
+  
+  .image-text {
+    font-size: 18px;
+    color: #333;
+    text-align: justify;
+    line-height: 1.5;
+  }

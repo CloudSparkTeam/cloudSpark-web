@@ -2,6 +2,7 @@ import React, { useState, useEffect} from "react";
 import axios from "axios"; // Certifique-se de importar axios
 import "./compImagemDetalhes.css";
 import { useNavigate } from "react-router-dom";
+import ImageDownloader from "../Download/ImageDownloader";
 
 ;
 
@@ -36,7 +37,6 @@ export function CompImagemDetalhes() {
 
     useEffect(() => {
         fetchImagensTratadas(); // Busca as imagens quando o componente é montado
-        console.log("esse é o erro", typeof(images))
         console.log(images)
     }, []);
 
@@ -113,7 +113,9 @@ export function CompImagemDetalhes() {
                 ))}
             </div>
             <div id="after-image-slider-controls" />
-         
+            <div className="botao-para-baixar">
+                <ImageDownloader images={images} />
+            </div>
         </section>
     );
 }

@@ -36,31 +36,26 @@ export default function CompDetalhesTexto() {
 
                 <div className="texto-detalhes">
                     <div className="lado-texto-negrito">
-                    <h3 className="texto-negrito">Coordenada Norte:</h3>
-                    <h3 className="texto-negrito">Coordenada Sul:</h3>
-                    <h3 className="texto-negrito">Coordenada Leste:</h3>
-                    <h3 className="texto-negrito">Coordenada Oeste:</h3>
-                    <h3 className="texto-negrito">Data Imagem:</h3>
-                    <h3 className="texto-negrito">Data Início:</h3>
-                    <h3 className="texto-negrito">Data Final:</h3>
-                    <h3 className="texto-negrito">% de nuvens:</h3>
-                    <h3 className="texto-negrito">% de sombras:</h3>
+                        <h3 className="texto-negrito">Coordenada Norte:</h3>
+                        <h3 className="texto-negrito">Coordenada Sul:</h3>
+                        <h3 className="texto-negrito">Coordenada Leste:</h3>
+                        <h3 className="texto-negrito">Coordenada Oeste:</h3>
+                        <h3 className="texto-negrito">Data Imagem:</h3>
+                        <h3 className="texto-negrito">Data Início:</h3>
+                        <h3 className="texto-negrito">Data Final:</h3>
+                        <h3 className="texto-negrito">% de nuvens:</h3>
+                        <h3 className="texto-negrito">% de sombras:</h3>
                     </div>
-                    <div className="lado-texto-normal">
-                    
-                    <p className="texto-normal">{ObjetoDetalhes?.coordenada_norte}</p>
-                    
-                    <p className="texto-normal">{ObjetoDetalhes?.coordenada_sul}</p>
-                    
-                    <p className="texto-normal">{ObjetoDetalhes?.coordenada_leste}</p>
-                    
-                    <p className="texto-normal">{ObjetoDetalhes?.coordenada_oeste}</p>
-                    
-                    <p className="texto-normal">{ObjetoDetalhes?.data_imagem}</p>
-                    <p className="texto-normal">{ObjetoDetalhes?.startDate}</p>
-                    <p className="texto-normal">{ObjetoDetalhes?.endDate}</p>
-                    <p className="texto-normal">{ObjetoDetalhes?.cloudPercentage}</p>
-                    <p className="texto-normal">{ObjetoDetalhes?.shadowPercentage}</p>
+                    <div className="lado-texto-normal">              
+                        <p className="texto-normal">{ObjetoDetalhes?.coordenada_norte}</p>                   
+                        <p className="texto-normal">{ObjetoDetalhes?.coordenada_sul}</p>                   
+                        <p className="texto-normal">{ObjetoDetalhes?.coordenada_leste}</p>
+                        <p className="texto-normal">{ObjetoDetalhes?.coordenada_oeste}</p>
+                        <p className="texto-normal">{ObjetoDetalhes?.data_imagem}</p>
+                        <p className="texto-normal">{ObjetoDetalhes?.startDate}</p>
+                        <p className="texto-normal">{ObjetoDetalhes?.endDate}</p>
+                        <p className="texto-normal">{ObjetoDetalhes?.cloudPercentage}</p>
+                        <p className="texto-normal">{ObjetoDetalhes?.shadowPercentage}</p>
                     </div>
                 </div>
             </div>

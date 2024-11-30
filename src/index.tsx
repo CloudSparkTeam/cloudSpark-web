@@ -12,8 +12,7 @@ import History from './Pages/History/Historico'
 
 
 import NovoLogin from './Pages/NovoLogin/NovoLogin';
-import DetalhesImagem from './Pages/DetalhesImagem/UltimateVaidacerto';
-import ImageDetails from './Pages/imageDetails/ImageDetails';
+
 import PageDetalhes from './Pages/Detalhes/PageDetalhes';
 
 

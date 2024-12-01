@@ -93,6 +93,10 @@ export default function Historico() {
   }
 
   function getSubstringAfterFourthUnderscore(nome: string): string {
+    if (!nome) {
+      return "Nome inválido ou não fornecido";
+    }
+
     const underscorePositions = [];
     // Encontrar as posições de cada "_"
     for (let i = 0; i < nome.length; i++) {
@@ -153,6 +157,9 @@ export default function Historico() {
     } finally {
       setLoadingGerarNovamente(false);
     }
+    setTimeout(function() {
+      navigate("/detalhesimagem")
+    }, 5000)
   };
 
   return (
@@ -164,7 +171,6 @@ export default function Historico() {
           <Table className="historico-tabela">
             <TableHead>
               <TableRow>
-                <TableCell>Nome</TableCell>
                 <TableCell>Data da Imagem</TableCell>
                 <TableCell>Norte</TableCell>
                 <TableCell>Sul</TableCell>
@@ -181,9 +187,6 @@ export default function Historico() {
             <TableBody>
               {solicitacoes.map((solicitation, index) => (
                 <TableRow key={index}>
-                  <TableCell>
-                    {getSubstringAfterFourthUnderscore(solicitation.nome)}
-                  </TableCell>
                   <TableCell>{formatDate(solicitation.data_imagem)}</TableCell>
                   <TableCell>
                     {solicitation.coordenada_norte.toFixed(4)}

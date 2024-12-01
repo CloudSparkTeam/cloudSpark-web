@@ -85,6 +85,18 @@ const FiltroDesktop = () => {
       // usuario_id: 1, // Descomente e altere conforme necessário
     };
 
+    const saveObjectToLocalStorage = (key: string, obj: Record<string, any>) => {
+      try {
+        const jsonString = JSON.stringify(obj);
+        localStorage.setItem(key, jsonString);
+        console.log("Objeto salvo com sucesso!");
+      } catch (error) {
+        console.error("Erro ao salvar no localStorage:", error);
+      }
+    };
+
+      saveObjectToLocalStorage("detalhesimagem", dataToSend);
+
     console.log('Dados enviados para o backend:', dataToSend);
 
 
@@ -94,6 +106,8 @@ const FiltroDesktop = () => {
     } catch (error) {
       console.error('Erro ao enviar dados para o backend:', error);
     }
+
+    navigate("/detalhesimagem")
   };
   return (
 

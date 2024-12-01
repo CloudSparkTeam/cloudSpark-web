@@ -17,6 +17,8 @@ const ImageDownloader: React.FC<ImageDownloaderProps> = ({ images }) => {
             const anchor = document.createElement('a');
             anchor.href = image.url;
             anchor.download = image.name; // Use o nome da imagem
+            const imagem = anchor.download
+            console.log("Imagem baixada" + imagem)
             anchor.click();
         });
         console.log("terminou a func de baixar imagem")

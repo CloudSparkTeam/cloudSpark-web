@@ -1,0 +1,82 @@
+.background-page-details {
+    padding-top: 90px;
+    padding-bottom: 90px;
+    height: 100%;
+    width: 100%;
+    background-color: #A7C8EF;
+    /* background-color: #f0f0f0; */
+    
+}
+
+.container-primordial {
+   
+    /* border: solid 2px; */
+    border-radius: 20px;
+    height: 550px;
+    width: 800px;
+    margin-left: 300px;
+    margin-top: -35px;
+    background-color: #eaee20;
+    /* background-color: #F0EDD4; */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.botao-voltar-la {
+    padding-top: 15px;
+    height: 45px;
+    width: 30px;
+    margin-left: 750px;
+}
+
+.botao-voltar-la-detalhes {
+    background-color: rgb(209, 32, 32);
+    color: bisque;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.texto-titulo-pagina {
+    text-align: center;
+    height: 50px;
+    margin-top: -35px;
+}
+
+.texto-titulo-letras {
+    font-weight: bold;
+}
+
+.container-cada-lado {
+    width: 750px;
+    height: 450px;
+    margin-left: 20px;
+   
+
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-e-imagem {
+    height: 445px;
+    width: 425px;
+    background-color: #F0EDD4;
+    /* background-color: #f8fc32; */
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.container-d-texto {
+    height: 445px;
+    width: 320px;
+    background-color: #F0EDD4;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    /* background-color: #f8fc32; */
+}

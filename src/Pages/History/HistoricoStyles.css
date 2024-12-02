@@ -1,78 +1,98 @@
-
+/* Estilos gerais do container */
 .historico-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  justify-content: center; 
+  margin: 20px 0;
+  padding: 0 5%;
 }
 
+/* Título */
 .historico-titulo {
-  font-size: 24px;
+  font-size: 1.5rem;
   margin-bottom: 20px;
   font-weight: bold;
+  text-align: center;
+  color: #333;
 }
 
+/* Tabela */
 .historico-tabela {
-  width: 80%;
-  border-collapse: collapse;
-  background-color: white; /* Fundo branco para a tabela */
-}
-
-.historico-tabela th, .historico-tabela td {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: left;
-}
-
-.historico-tabela th {
-  background-color: #f4f4f4;
-}
-
-
-
-/* Intercalar as cores das linhas */
-.historico-tabela tbody tr:nth-child(odd) {
-  background-color: #e0e0e0; /* Cinza claro para linhas ímpares */
-}
-
-.historico-tabela tbody tr:nth-child(even) {
-  background-color: white; /* Branco para linhas pares */
-}
-
-
-.historico-tabela {
-  width: 80%;
-  border-collapse: separate; /* Permitir arredondamento */
+  width: 80%; /* Mantém uma largura fixa ou adaptável */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  border-collapse: separate; /* Permite espaçamento para bordas arredondadas */
   border-spacing: 0;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 8px; /* Arredondar bordas da tabela */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Bordas arredondadas */
   overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Leve sombra para destaque */
 }
 
+/* Cabeçalho da tabela */
 .historico-tabela th {
   background-color: #f4f4f4;
+  color: #555;
+  font-weight: bold;
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+
+.historico-tabela th:first-child {
   border-top-left-radius: 8px;
+}
+
+.historico-tabela th:last-child {
   border-top-right-radius: 8px;
 }
 
-.historico-tabela td,
-.historico-tabela th {
-  border: 1px solid #ccc;
-  padding: 10px;
+/* Células */
+.historico-tabela td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #ddd;
   text-align: left;
 }
 
+/* Linhas alternadas */
+.historico-tabela tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
 
+.historico-tabela tbody tr:nth-child(even) {
+  background-color: #fff;
+}
+
+/* Botões de ação */
 .historico-tabela button {
-  padding: 5px 10px;
+  padding: 8px 12px;
   background-color: #007bff;
-  color: white;
+  color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.3s ease;
 }
 
 .historico-tabela button:hover {
   background-color: #0056b3;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .historico-tabela {
+    font-size: 0.9rem;
+  }
+
+  .historico-tabela th,
+  .historico-tabela td {
+    padding: 8px;
+  }
+
+  .historico-tabela button {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
 }

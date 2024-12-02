@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { GoogleMap, LoadScript, Polygon, Marker } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Polygon, Marker } from '@react-google-maps/api';
 import './style.css';
 import PolyShow from "../../Images/Icons/polygonShow.svg";
 import PolyHide from "../../Images/Icons/polygonHide.svg";
@@ -15,7 +15,9 @@ interface MapSelectorInterface {
 
 interface MapSelectorProps {
     sendPolygonToBack: (coords: { norte: number; sul: number; leste: number; oeste: number }) => void;
+
 }
+
 
 function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element {
     const [regiao] = useState<MapSelectorInterface | null>(null);
@@ -29,6 +31,11 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
     const [isExpanded, setIsExpanded] = useState(false);
 
 
+
+    const { isLoaded, loadError } = useJsApiLoader({
+        googleMapsApiKey: process.env.REACT_APP_MAP_TOKEN || '',
+    });
+    
     // Crie uma referência para o contêiner
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -121,9 +128,17 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
         setShowPoly(!ShowPoly);
     };
 
+    if (loadError) {
+        return <div>Erro ao carregar o mapa.</div>;
+    }
+
+    if (!isLoaded) {
+        return <div>Carregando mapa...</div>;
+    }
+
+
     return (
         <div className='MainMapContainer'>
-        <LoadScript googleMapsApiKey={process.env.REACT_APP_MAP_TOKEN || ''}>
             <div className={'LocationContainer'} ref={containerRef}>
                 <div className={isExpanded ? 'LocationExpanded' : 'Location'}>
                     <div className='MapWrapper'>
@@ -172,7 +187,6 @@ function MapSelector({ sendPolygonToBack }: MapSelectorProps): React.JSX.Element
                     {ShowPoly ? (<img src={PolyShow} alt="Motrar poligono" />) : (<img src={PolyHide} alt="Apagar poligono" />)}
                 </div>
             </div>
-        </LoadScript>
         </div>
     );
 }

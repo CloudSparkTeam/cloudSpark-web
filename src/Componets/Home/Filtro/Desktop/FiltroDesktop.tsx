@@ -5,7 +5,7 @@ import Nuvem from "../../../../Images/Icons/cloud-svgrepo-com.svg";
 import NuvemS from "../../../../Images/Icons/cloudShadow-svgrepo-com.svg";
 
 const FiltroDesktop = () => {
-
+  const [Id, SetId] = useState("");
   const [CriteriaC, setCriteriaC] = useState(false);
   const [CriteriaS, setCriteriaS] = useState(false);
   const [startDate, setStartDate] = useState<string>('');
@@ -15,15 +15,33 @@ const FiltroDesktop = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("Token"); // Pega o token do localStorage
+  const fetchUsuarioLogado = async () => {
+    const token = localStorage.getItem("Token");
 
     if (!token) {
-      navigate("/"); // Redireciona para a página de login se o token não existir
+      navigate("/");
       return;
     }
-  }, [navigate]); // O useEffect será executado ao carregar o componente
+    const urlUsuarioLogado = "http://localhost:3002/usuario/usuario-logado";
 
+    try {
+      const response = await axios.get(urlUsuarioLogado, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.status === 200) {
+        SetId(response.data.id);
+      }
+    } catch (error) {
+      console.error("Erro ao buscar dados do usuário: ", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsuarioLogado();
+  }, [navigate]);
 
 
   const ChangeFeature = (botao: string) => {
@@ -82,8 +100,20 @@ const FiltroDesktop = () => {
       endDate: new Date(endDate).toISOString(), // Formato ISO 8601
       cloudPercentage,
       shadowPercentage,
-      // usuario_id: 1, // Descomente e altere conforme necessário
+      usuario_id: Id, // Descomente e altere conforme necessário
     };
+
+    const saveObjectToLocalStorage = (key: string, obj: Record<string, any>) => {
+      try {
+        const jsonString = JSON.stringify(obj);
+        localStorage.setItem(key, jsonString);
+        console.log("Objeto salvo com sucesso!");
+      } catch (error) {
+        console.error("Erro ao salvar no localStorage:", error);
+      }
+    };
+
+      saveObjectToLocalStorage("detalhesimagem", dataToSend);
 
     console.log('Dados enviados para o backend:', dataToSend);
 
@@ -94,6 +124,8 @@ const FiltroDesktop = () => {
     } catch (error) {
       console.error('Erro ao enviar dados para o backend:', error);
     }
+
+    navigate("/detalhesimagem")
   };
   return (
 
@@ -198,5 +230,3 @@ const FiltroDesktop = () => {
 };
 
 export default FiltroDesktop;
-
-

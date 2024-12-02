@@ -13,6 +13,9 @@ import History from './Pages/History/Historico'
 
 import NovoLogin from './Pages/NovoLogin/NovoLogin';
 
+import PageDetalhes from './Pages/Detalhes/PageDetalhes';
+
+
 const router = createBrowserRouter([{
   path: "/login",
   element: <NovoLogin />
@@ -36,7 +39,11 @@ const router = createBrowserRouter([{
 {
   path: "/cadastrousuario",
   element: <CadastroUsuario />
-},
+}, 
+{
+  path: "/detalhesimagem",
+  element: <PageDetalhes />
+}
 
 ])
 

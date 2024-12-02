@@ -11,6 +11,9 @@ type ImageUrl = {
 
 export function CompImagemDetalhes() {
     const [images, setImages] = useState<ImageUrl[]>([]);
+    const [originalImages, setOriginalImages] = useState<ImageUrl[]>([]);
+    const [shadowMaskImages, setShadowMaskImages] = useState<ImageUrl[]>([]);
+    const [cloudMaskImages, setCloudMaskImages] = useState<ImageUrl[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [imageIndex, setImageIndex] = useState(0);
@@ -24,7 +27,26 @@ export function CompImagemDetalhes() {
         setError(null);
         try {
             const response = await axios.get('http://localhost:3002/imagemSatelite/imagens-tratadas/1');
-            setImages(response.data);
+            const fetchedImages = response.data;
+
+            // Filtra as imagens conforme o tipo
+            const originalImages = fetchedImages.filter((img: ImageUrl) =>
+                img.name.includes('_original_thumbnail.png')
+            );
+            const shadowMaskImages = fetchedImages.filter((img: ImageUrl) =>
+                img.name.includes('_overexposed_thumbnail.png')
+            );
+            const cloudMaskImages = fetchedImages.filter((img: ImageUrl) =>
+                img.name.includes('_segmented_thumbnail.png')
+            );
+
+            setOriginalImages(originalImages);
+            setShadowMaskImages(shadowMaskImages);
+            setCloudMaskImages(cloudMaskImages);
+
+            // Inicializa o estado de imagens com as imagens do tipo selecionado
+            setImages(originalImages);
+
         } catch {
             setError('Erro ao buscar imagens tratadas!');
         } finally {
@@ -37,11 +59,12 @@ export function CompImagemDetalhes() {
     }, []);
 
     function showNextImage() {
-        setImageIndex((index) => (index === images.length - 1 ? 0 : index + 1));
+        setImageIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+
     }
 
     function showPrevImage() {
-        setImageIndex((index) => (index === 0 ? images.length - 1 : index - 1));
+        setImageIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
     }
 
     function handleDotClick(index: number) {
@@ -49,8 +72,17 @@ export function CompImagemDetalhes() {
     }
 
     const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedOption(event.target.value);
-        console.log("Opção selecionada:", event.target.value); // Remova ou substitua pelo comportamento desejado
+        const selected = event.target.value;
+        setSelectedOption(selected);
+
+        // Filtra as imagens com base na opção selecionada
+        if (selected === "original") {
+            setImages(originalImages);
+        } else if (selected === "shadow_mask") {
+            setImages(shadowMaskImages);
+        } else if (selected === "cloud_mask") {
+            setImages(cloudMaskImages);
+        }
     };
 
     const downloadCurrentImage = async () => {
